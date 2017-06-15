@@ -10,7 +10,7 @@
     </properties>
 
     <groupId>kata</groupId>
-    <artifactId>rpn</artifactId>
+    <artifactId>kata</artifactId>
     <version>1.0-SNAPSHOT</version>
     <dependencies>
         <dependency>
