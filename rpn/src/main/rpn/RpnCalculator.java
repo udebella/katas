@@ -1,7 +1,7 @@
 package rpn;
 
 public class RpnCalculator {
-    public String calcul(String expression) {
+    public RpnExpression calcul(RpnExpression expression) {
         return expression;
     }
 }
