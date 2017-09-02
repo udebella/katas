@@ -22,4 +22,9 @@ public class RpnCalculatorTest {
     public void should_handle_simple_number_in_rpn_expression() throws Exception {
         assertThat(rpnCalculator.calcul(RpnExpression.of("1"))).isEqualTo(RpnExpression.of("1"));
     }
+
+    @Test(expected = AssertionError.class)
+    public void should_not_allow_null_values() throws Exception {
+        rpnCalculator.calcul(null);
+    }
 }
