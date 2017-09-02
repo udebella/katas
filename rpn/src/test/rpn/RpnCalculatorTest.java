@@ -17,4 +17,9 @@ public class RpnCalculatorTest {
     public void should_handle_empty_string() throws Exception {
         assertThat(rpnCalculator.calcul("")).isEqualTo("");
     }
+
+    @Test
+    public void should_handle_simple_number_in_rpn_expression() throws Exception {
+        assertThat(rpnCalculator.calcul("1")).isEqualTo("1");
+    }
 }
