@@ -1,12 +1,20 @@
 package rpn;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class RpnCalculatorTest {
+    private RpnCalculator rpnCalculator;
+
+    @Before
+    public void setUp() throws Exception {
+        rpnCalculator = new RpnCalculator();
+    }
+
     @Test
     public void should_handle_empty_string() throws Exception {
-        assertThat(new RpnCalculator().calcul("")).isEqualTo(0);
+        assertThat(rpnCalculator.calcul("")).isEqualTo(0);
     }
 }
