@@ -8,6 +8,7 @@ public class RpnExpression {
     }
 
     public static RpnExpression of(String expression) {
+        assert expression != null;
         return new RpnExpression(expression);
     }
 
