@@ -20,16 +20,16 @@ public class RpnExpression {
     }
 
     private void evaluatePart(String part) {
-        Number number = Operation.of(part)
+        Number number = Operations.of(part)
                 .map(this::applyOperation)
                 .orElseGet(() -> Number.of(part));
         parts.push(number);
     }
 
-    private Number applyOperation(Operation operation) {
+    private Number applyOperation(Operations operations) {
         final Number number1 = parts.pop();
         final Number number2 = parts.pop();
-        return operation.applyOperation(number1, number2);
+        return operations.applyOperation(number1, number2);
     }
 
     @Override

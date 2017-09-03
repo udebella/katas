@@ -6,13 +6,13 @@ import java.util.Arrays;
 import java.util.Optional;
 import java.util.function.BinaryOperator;
 
-public enum Operation {
+public enum Operations {
     SUM("+", Number::add);
 
     private final String operator;
     private final BinaryOperator<Number> operation;
 
-    Operation(String operator, BinaryOperator<Number> operation) {
+    Operations(String operator, BinaryOperator<Number> operation) {
         this.operation = operation;
         this.operator = operator;
     }
@@ -21,10 +21,10 @@ public enum Operation {
         return operation.apply(number1, number2);
     }
 
-    public static Optional<Operation> of(String part) {
+    public static Optional<Operations> of(String part) {
         assert part != null;
-        return Arrays.stream(Operation.values())
-                .filter(operation -> operation.compareOperator(part))
+        return Arrays.stream(Operations.values())
+                .filter(operations -> operations.compareOperator(part))
                 .findAny();
     }
 
