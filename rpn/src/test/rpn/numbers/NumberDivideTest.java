@@ -42,4 +42,14 @@ public class NumberDivideTest {
 
         assertThat(result).isEqualTo(five);
     }
+
+    @Test
+    public void divide_two_numbers_should_produce_the_euclidean_division() throws Exception {
+        Number two = Number.of("2");
+        Number five = Number.of("5");
+
+        final Number result = five.divide(two);
+
+        assertThat(result).isEqualTo(two);
+    }
 }
