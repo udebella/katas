@@ -3,10 +3,11 @@ package rpn;
 import java.util.Stack;
 
 public class RpnExpression {
+    private static final String SEPARATOR = " ";
     private Stack<String> parts = new Stack<>();
 
     public RpnExpression(String expression) {
-        for (String part : expression.split(" ")) {
+        for (String part : expression.split(SEPARATOR)) {
             parts.push(part);
         }
     }
