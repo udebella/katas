@@ -5,6 +5,7 @@ public class Number {
     private final int number;
 
     public static Number of(String number) {
+        assert number != null;
         if (number.length() == 0) {
             return ZERO;
         }
