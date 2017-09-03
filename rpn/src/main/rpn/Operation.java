@@ -1,5 +1,7 @@
 package rpn;
 
+import rpn.numbers.Number;
+
 import java.util.Arrays;
 import java.util.Optional;
 import java.util.function.BinaryOperator;

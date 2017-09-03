@@ -2,6 +2,7 @@ package rpn;
 
 import org.junit.Test;
 import org.mockito.Mockito;
+import rpn.numbers.Number;
 
 import java.util.Optional;
 

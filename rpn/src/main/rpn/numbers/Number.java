@@ -1,4 +1,4 @@
-package rpn;
+package rpn.numbers;
 
 public class Number {
     public static final Number ZERO = new Number(0);

@@ -1,5 +1,7 @@
 package rpn;
 
+import rpn.numbers.Number;
+
 import java.util.Stack;
 
 public class RpnExpression {
