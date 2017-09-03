@@ -7,6 +7,8 @@ import rpn.numbers.Number;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static rpn.Operations.SUM;
+import static rpn.numbers.Number.ZERO;
 
 public class OperationsTest {
     @Test(expected = AssertionError.class)
@@ -21,10 +23,10 @@ public class OperationsTest {
 
     @Test
     public void applying_operation_should_call_method_right_method_on_numbers() throws Exception {
-        Number zero = Mockito.spy(Number.ZERO);
+        Number zero = Mockito.spy(ZERO);
 
-        Operations.SUM.applyOperation(zero, Number.ZERO);
+        SUM.applyOperation(zero, ZERO);
 
-        Mockito.verify(zero).add(Number.ZERO);
+        Mockito.verify(zero).add(ZERO);
     }
 }
