@@ -13,11 +13,18 @@ public class RpnExpression {
     }
 
     public RpnExpression evaluate() {
-        if ("+".equals(parts.peek())) {
-            parts.pop();
-            return RpnExpression.of(String.valueOf(Integer.valueOf(parts.pop()) + Integer.valueOf(parts.pop())));
+        StringBuilder result = new StringBuilder();
+
+        String part = parts.pop();
+        if ("+".equals(part)) {
+            final String number1 = parts.pop();
+            final String number2 = parts.pop();
+            final int sum = Integer.valueOf(number1) + Integer.valueOf(number2);
+            result.append(sum);
+        } else {
+            result.append(part);
         }
-        return this;
+        return RpnExpression.of(result.toString());
     }
 
     public static RpnExpression of(String expression) {
