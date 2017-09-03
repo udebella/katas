@@ -43,4 +43,11 @@ public class RpnExpressionTest {
 
         assertThat(expression).isEqualTo(RpnExpression.of("0"));
     }
+
+    @Test
+    public void should_handle_a_simple_multiplication() throws Exception {
+        final RpnExpression expression = RpnExpression.of("1 2 *");
+
+        assertThat(expression).isEqualTo(RpnExpression.of("2"));
+    }
 }

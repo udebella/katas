@@ -28,6 +28,10 @@ public class Number {
         return new Number(number - numberToSubstract.number);
     }
 
+    public Number multiply(Number numberToMultiply) {
+        return Number.ZERO;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
