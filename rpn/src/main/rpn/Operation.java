@@ -20,8 +20,13 @@ public enum Operation {
     }
 
     public static Optional<Operation> of(String part) {
+        assert part != null;
         return Arrays.stream(Operation.values())
-                .filter(operation -> operation.operator.equals(part))
+                .filter(operation -> operation.compareOperator(part))
                 .findAny();
+    }
+
+    private boolean compareOperator(String part) {
+        return operator.equals(part);
     }
 }
