@@ -26,4 +26,8 @@ public class RpnExpression {
     public int hashCode() {
         return expression.hashCode();
     }
+
+    public RpnExpression evaluate() {
+        return this;
+    }
 }
