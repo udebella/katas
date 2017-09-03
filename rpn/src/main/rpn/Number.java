@@ -24,6 +24,10 @@ public class Number {
         return new Number(numberToAdd.number + number);
     }
 
+    public Number substract(Number number) {
+        return Number.ZERO;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

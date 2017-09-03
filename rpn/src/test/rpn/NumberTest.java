@@ -35,4 +35,9 @@ public class NumberTest {
     public void adding_two_number_should_produce_sum_of_these_numbers() throws Exception {
         assertThat(Number.of("1").add(Number.of("1"))).isEqualTo(Number.of("2"));
     }
+
+    @Test
+    public void substract_zero_to_zero_should_produce_zero() throws Exception {
+        assertThat(Number.ZERO.substract(Number.ZERO)).isEqualTo(Number.ZERO);
+    }
 }
