@@ -1,17 +1,21 @@
 package rpn;
 
+import java.util.Stack;
+
 public class RpnExpression {
-    private String expression;
+    private Stack<String> parts = new Stack<>();
 
     public RpnExpression(String expression) {
-        this.expression = expression;
+        for (String part : expression.split(" ")) {
+            parts.push(part);
+        }
     }
 
     public RpnExpression evaluate() {
-        if (expression.length() > 1) {
-            return RpnExpression.of(String.valueOf(expression.charAt(0) - 48 + expression.charAt(2) - 48));
+        if ("+".equals(parts.peek())) {
+            parts.pop();
+            return RpnExpression.of(String.valueOf(Integer.valueOf(parts.pop()) + Integer.valueOf(parts.pop())));
         }
-
         return this;
     }
 
@@ -27,11 +31,18 @@ public class RpnExpression {
 
         RpnExpression that = (RpnExpression) o;
 
-        return expression.equals(that.expression);
+        return parts.equals(that.parts);
     }
 
     @Override
     public int hashCode() {
-        return expression.hashCode();
+        return parts.hashCode();
+    }
+
+    @Override
+    public String toString() {
+        return "RpnExpression{" +
+                "parts=" + parts +
+                '}';
     }
 }
