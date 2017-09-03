@@ -33,7 +33,7 @@ public class Number {
     }
 
     public Number divide(Number numberToDivide) {
-        return ZERO;
+        return this;
     }
 
     @Override

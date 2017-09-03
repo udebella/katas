@@ -14,4 +14,14 @@ public class NumberDivideTest {
 
         assertThat(result).isEqualTo(ZERO);
     }
+
+    @Test
+    public void divide_any_number_by_one_should_produce_that_number() throws Exception {
+        Number one = Number.of("1");
+        Number five = Number.of("5");
+
+        final Number result = five.divide(one);
+
+        assertThat(result).isEqualTo(five);
+    }
 }
