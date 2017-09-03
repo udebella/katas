@@ -16,8 +16,19 @@ public class NumberTest {
         final Number one = Number.of("1");
         final Number two = Number.of("2");
 
-        assertThat(Number.of("1").equals(Number.of("1"))).isTrue();
-        assertThat(one.equals(two)).isFalse();
+        final boolean comparison = one.equals(two);
+
+        assertThat(comparison).isFalse();
+    }
+
+    @Test
+    public void two_instances_of_same_number_should_be_the_same() throws Exception {
+        final Number one1 = Number.of("1");
+        final Number one2 = Number.of("1");
+
+        final boolean comparison = one1.equals(one2);
+
+        assertThat(comparison).isTrue();
     }
 
     @Test
