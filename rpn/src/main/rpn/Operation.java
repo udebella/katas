@@ -2,21 +2,21 @@ package rpn;
 
 import java.util.Arrays;
 import java.util.Optional;
-import java.util.function.IntBinaryOperator;
+import java.util.function.BinaryOperator;
 
 public enum Operation {
-    SUM("+", (int number1, int number2) -> number1 + number2);
+    SUM("+", Number::add);
 
     private final String operator;
-    private final IntBinaryOperator operation;
+    private final BinaryOperator<Number> operation;
 
-    Operation(String operator, IntBinaryOperator operation) {
+    Operation(String operator, BinaryOperator<Number> operation) {
         this.operation = operation;
         this.operator = operator;
     }
 
     public Number applyOperation(Number number1, Number number2) {
-        return number1.apply(operation, number2);
+        return operation.apply(number1, number2);
     }
 
     public static Optional<Operation> of(String part) {

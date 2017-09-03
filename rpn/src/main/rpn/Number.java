@@ -1,7 +1,5 @@
 package rpn;
 
-import java.util.function.IntBinaryOperator;
-
 public class Number {
     private final int number;
 
@@ -13,13 +11,12 @@ public class Number {
         }
     }
 
-    public Number(int number) {
+    private Number(int number) {
         this.number = number;
     }
 
-    public Number apply(IntBinaryOperator operation, Number number2) {
-        int result = operation.applyAsInt(number, number2.number);
-        return new Number(result);
+    public Number add(Number numberToAdd) {
+        return new Number(numberToAdd.number + number);
     }
 
     @Override
