@@ -25,6 +25,9 @@ public class Number {
     }
 
     public Number substract(Number number) {
+        if (this == ZERO) {
+            return new Number(-number.number);
+        }
         return this;
     }
 
@@ -41,5 +44,12 @@ public class Number {
     @Override
     public int hashCode() {
         return number;
+    }
+
+    @Override
+    public String toString() {
+        return "Number{" +
+                "number=" + number +
+                '}';
     }
 }
