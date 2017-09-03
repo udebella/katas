@@ -20,20 +20,20 @@ public class RpnExpressionTest {
     public void should_handle_empty_string() throws Exception {
         final RpnExpression expression = RpnExpression.of("");
 
-        assertThat(expression.evaluate()).isEqualTo(RpnExpression.of(""));
+        assertThat(expression).isEqualTo(RpnExpression.of(""));
     }
 
     @Test
     public void should_handle_simple_number_in_rpn_expression() throws Exception {
         final RpnExpression expression = RpnExpression.of("1");
 
-        assertThat(expression.evaluate()).isEqualTo(RpnExpression.of("1"));
+        assertThat(expression).isEqualTo(RpnExpression.of("1"));
     }
 
     @Test
     public void should_handle_a_simple_addition() throws Exception {
         final RpnExpression expression = RpnExpression.of("1 1 +");
 
-        assertThat(expression.evaluate()).isEqualTo(RpnExpression.of("2"));
+        assertThat(expression).isEqualTo(RpnExpression.of("2"));
     }
 }

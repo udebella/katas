@@ -4,27 +4,15 @@ import java.util.Stack;
 
 public class RpnExpression {
     private static final String SEPARATOR = " ";
-    private Stack<String> parts = new Stack<>();
+    private Stack<Number> parts = new Stack<>();
 
-    public RpnExpression(String expression) {
+    private RpnExpression(String expression) {
         for (String part : expression.split(SEPARATOR)) {
-            parts.push(part);
+            Number number = Operation.of(part)
+                    .map(operation -> operation.applyOperation(parts.pop(), parts.pop()))
+                    .orElseGet(() -> new Number(part));
+            parts.push(number);
         }
-    }
-
-    public RpnExpression evaluate() {
-        StringBuilder result = new StringBuilder();
-
-        String part = parts.pop();
-        if ("+".equals(part)) {
-            final String number1 = parts.pop();
-            final String number2 = parts.pop();
-            final int sum = Integer.valueOf(number1) + Integer.valueOf(number2);
-            result.append(sum);
-        } else {
-            result.append(part);
-        }
-        return RpnExpression.of(result.toString());
     }
 
     public static RpnExpression of(String expression) {
