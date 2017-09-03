@@ -24,4 +24,11 @@ public class NumberDivideTest {
 
         assertThat(result).isEqualTo(five);
     }
+
+    @Test(expected = ArithmeticException.class)
+    public void divide_by_zero_should_not_be_allowed() throws Exception {
+        Number five = Number.of("5");
+
+        five.divide(Number.of("0"));
+    }
 }

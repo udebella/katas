@@ -33,6 +33,9 @@ public class Number {
     }
 
     public Number divide(Number numberToDivide) {
+        if (ZERO.equals(numberToDivide)) {
+            throw new ArithmeticException("Do not divide by zero");
+        }
         return this;
     }
 
