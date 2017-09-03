@@ -8,15 +8,15 @@ public class RpnExpression {
     private static final String SEPARATOR = " ";
     private final Stack<Number> parts = new Stack<>();
 
-    public static RpnExpression of(String expression) {
-        assert expression != null;
-        return new RpnExpression(expression);
-    }
-
     private RpnExpression(String expression) {
         for (String part : expression.split(SEPARATOR)) {
             evaluatePart(part);
         }
+    }
+
+    public static RpnExpression of(String expression) {
+        assert expression != null;
+        return new RpnExpression(expression);
     }
 
     private void evaluatePart(String part) {
@@ -27,8 +27,8 @@ public class RpnExpression {
     }
 
     private Number applyOperation(Operations operations) {
-        final Number number1 = parts.pop();
         final Number number2 = parts.pop();
+        final Number number1 = parts.pop();
         return operations.applyOperation(number1, number2);
     }
 
