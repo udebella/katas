@@ -17,13 +17,6 @@ public class RpnExpressionTest {
     }
 
     @Test
-    public void should_handle_empty_string() throws Exception {
-        final RpnExpression expression = RpnExpression.of("");
-
-        assertThat(expression).isEqualTo(RpnExpression.of(""));
-    }
-
-    @Test
     public void should_handle_simple_number_in_rpn_expression() throws Exception {
         final RpnExpression expression = RpnExpression.of("1");
 
