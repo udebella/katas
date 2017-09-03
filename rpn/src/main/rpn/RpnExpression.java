@@ -8,6 +8,10 @@ public class RpnExpression {
     }
 
     public RpnExpression evaluate() {
+        if (expression.length() > 1) {
+            return RpnExpression.of(String.valueOf(expression.charAt(0) - 48 + expression.charAt(2) - 48));
+        }
+
         return this;
     }
 

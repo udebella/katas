@@ -29,4 +29,11 @@ public class RpnExpressionTest {
 
         assertThat(expression).isEqualTo(RpnExpression.of("1"));
     }
+
+    @Test
+    public void should_handle_a_simple_addition() throws Exception {
+        final RpnExpression expression = RpnExpression.of("1 1 +");
+        
+        assertThat(expression.evaluate()).isEqualTo(RpnExpression.of("2"));
+    }
 }
