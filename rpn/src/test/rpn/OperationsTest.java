@@ -22,7 +22,7 @@ public class OperationsTest {
     }
 
     @Test
-    public void applying_operation_should_call_method_right_method_on_numbers() throws Exception {
+    public void applying_operation_should_call_right_method_on_numbers() throws Exception {
         Number zero = Mockito.spy(ZERO);
 
         SUM.applyOperation(zero, ZERO);
