@@ -31,4 +31,15 @@ public class NumberDivideTest {
 
         five.divide(Number.of("0"));
     }
+
+    @Test
+    public void divide_two_numbers_should_produce_the_division() throws Exception {
+        Number ten = Number.of("10");
+        Number two = Number.of("2");
+        Number five = Number.of("5");
+
+        final Number result = ten.divide(two);
+
+        assertThat(result).isEqualTo(five);
+    }
 }

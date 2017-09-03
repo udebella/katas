@@ -36,7 +36,7 @@ public class Number {
         if (ZERO.equals(numberToDivide)) {
             throw new ArithmeticException("Do not divide by zero");
         }
-        return this;
+        return new Number(number / numberToDivide.number);
     }
 
     @Override
