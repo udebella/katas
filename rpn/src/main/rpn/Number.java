@@ -24,11 +24,8 @@ public class Number {
         return new Number(numberToAdd.number + number);
     }
 
-    public Number substract(Number number) {
-        if (this == ZERO) {
-            return new Number(-number.number);
-        }
-        return this;
+    public Number substract(Number numberToSubstract) {
+        return new Number(number - numberToSubstract.number);
     }
 
     @Override
