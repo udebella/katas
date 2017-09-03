@@ -29,7 +29,7 @@ public class Number {
     }
 
     public Number multiply(Number numberToMultiply) {
-        return Number.ZERO;
+        return new Number(numberToMultiply.number * number);
     }
 
     @Override
