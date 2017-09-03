@@ -7,7 +7,8 @@ import java.util.Optional;
 import java.util.function.BinaryOperator;
 
 public enum Operations {
-    SUM("+", Number::add);
+    SUM("+", Number::add),
+    SUBSTRACT("-", Number::substract);
 
     private final String operator;
     private final BinaryOperator<Number> operation;
