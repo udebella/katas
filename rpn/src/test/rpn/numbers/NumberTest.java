@@ -3,6 +3,7 @@ package rpn.numbers;
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static rpn.numbers.Number.ZERO;
 
 public class NumberTest {
     @Test(expected = AssertionError.class)
@@ -12,13 +13,18 @@ public class NumberTest {
 
     @Test
     public void numbers_should_be_comparable() throws Exception {
+        final Number one = Number.of("1");
+        final Number two = Number.of("2");
+
         assertThat(Number.of("1").equals(Number.of("1"))).isTrue();
-        assertThat(Number.of("1").equals(Number.of("2"))).isFalse();
+        assertThat(one.equals(two)).isFalse();
     }
 
     @Test
     public void creating_numbers_with_empty_string_should_produce_zero() throws Exception {
-        assertThat(Number.of("")).isEqualTo(Number.ZERO);
+        final Number empty = Number.of("");
+
+        assertThat(empty).isEqualTo(ZERO);
     }
 
 }
