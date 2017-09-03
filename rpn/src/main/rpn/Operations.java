@@ -8,7 +8,8 @@ import java.util.function.BinaryOperator;
 
 public enum Operations {
     SUM("+", Number::add),
-    SUBSTRACT("-", Number::substract);
+    SUBSTRACT("-", Number::substract),
+    MULTIPLY("*", Number::multiply);
 
     private final String operator;
     private final BinaryOperator<Number> operation;
