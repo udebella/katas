@@ -46,8 +46,8 @@ public class RpnExpressionTest {
 
     @Test
     public void should_handle_a_simple_division() throws Exception {
-        final RpnExpression expression = RpnExpression.of("2 1 /");
+        final RpnExpression expression = RpnExpression.of("1 1 /");
 
-        assertThat(expression).isEqualTo(RpnExpression.of("2"));
+        assertThat(expression).isEqualTo(RpnExpression.of("1"));
     }
 }
