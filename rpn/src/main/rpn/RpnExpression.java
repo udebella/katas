@@ -7,6 +7,10 @@ public class RpnExpression {
         this.expression = expression;
     }
 
+    public RpnExpression evaluate() {
+        return this;
+    }
+
     public static RpnExpression of(String expression) {
         assert expression != null;
         return new RpnExpression(expression);
@@ -25,9 +29,5 @@ public class RpnExpression {
     @Override
     public int hashCode() {
         return expression.hashCode();
-    }
-
-    public RpnExpression evaluate() {
-        return this;
     }
 }
