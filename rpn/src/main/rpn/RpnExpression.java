@@ -4,7 +4,7 @@ import java.util.Stack;
 
 public class RpnExpression {
     private static final String SEPARATOR = " ";
-    private Stack<Number> parts = new Stack<>();
+    private final Stack<Number> parts = new Stack<>();
 
     private RpnExpression(String expression) {
         for (String part : expression.split(SEPARATOR)) {
