@@ -6,18 +6,28 @@ public class RpnExpression {
     private static final String SEPARATOR = " ";
     private final Stack<Number> parts = new Stack<>();
 
-    private RpnExpression(String expression) {
-        for (String part : expression.split(SEPARATOR)) {
-            Number number = Operation.of(part)
-                    .map(operation -> operation.applyOperation(parts.pop(), parts.pop()))
-                    .orElseGet(() -> new Number(part));
-            parts.push(number);
-        }
-    }
-
     public static RpnExpression of(String expression) {
         assert expression != null;
         return new RpnExpression(expression);
+    }
+
+    private RpnExpression(String expression) {
+        for (String part : expression.split(SEPARATOR)) {
+            evaluatePart(part);
+        }
+    }
+
+    private void evaluatePart(String part) {
+        Number number = Operation.of(part)
+                .map(this::applyOperation)
+                .orElseGet(() -> new Number(part));
+        parts.push(number);
+    }
+
+    private Number applyOperation(Operation operation) {
+        final Number number1 = parts.pop();
+        final Number number2 = parts.pop();
+        return operation.applyOperation(number1, number2);
     }
 
     @Override
