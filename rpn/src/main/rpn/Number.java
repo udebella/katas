@@ -25,7 +25,7 @@ public class Number {
     }
 
     public Number substract(Number number) {
-        return Number.ZERO;
+        return this;
     }
 
     @Override
