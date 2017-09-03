@@ -18,7 +18,9 @@ public class OperationsTest {
 
     @Test
     public void searching_non_existing_operation_should_return_empty_optional() throws Exception {
-        assertThat(Operations.of("non existing operation")).isEqualTo(Optional.empty());
+        final Optional<Operations> nonExistingOperation = Operations.of("non existing operation");
+
+        assertThat(nonExistingOperation).isEmpty();
     }
 
     @Test
