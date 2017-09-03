@@ -1,14 +1,18 @@
 package rpn;
 
 public class Number {
+    public static final Number ZERO = new Number(0);
     private final int number;
 
-    public Number(String number) {
+    public static Number of(String number) {
         if (number.length() == 0) {
-            this.number = 0;
-        } else {
-            this.number = Integer.valueOf(number);
+            return ZERO;
         }
+        return new Number(number);
+    }
+
+    private Number(String number) {
+        this.number = Integer.valueOf(number);
     }
 
     private Number(int number) {

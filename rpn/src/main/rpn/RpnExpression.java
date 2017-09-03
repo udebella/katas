@@ -20,7 +20,7 @@ public class RpnExpression {
     private void evaluatePart(String part) {
         Number number = Operation.of(part)
                 .map(this::applyOperation)
-                .orElseGet(() -> new Number(part));
+                .orElseGet(() -> Number.of(part));
         parts.push(number);
     }
 
