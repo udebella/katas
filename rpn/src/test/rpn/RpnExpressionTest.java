@@ -57,4 +57,11 @@ public class RpnExpressionTest {
 
         assertThat(expression).isEqualTo(RpnExpression.of("1"));
     }
+
+    @Test
+    public void should_allow_to_do_multiple_operations_in_one_expression() throws Exception {
+        final RpnExpression expression = RpnExpression.of("4 2 + 3 -");
+
+        assertThat(expression).isEqualTo(RpnExpression.of("3"));
+    }
 }
