@@ -4,7 +4,6 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 public class Amount {
     public Amount(int value) {
-        throw new NotImplementedException();
     }
 
     public Amount cents() {
