@@ -11,4 +11,12 @@ public class AmountTest {
 
         assertThat(amount).isNotNull();
     }
+
+    @Test
+    public void amounts_can_be_compared() throws Exception {
+        final Amount zero1 = new Amount(0);
+        final Amount zero2 = new Amount(0);
+
+        assertThat(zero1).isEqualTo(zero2);
+    }
 }
