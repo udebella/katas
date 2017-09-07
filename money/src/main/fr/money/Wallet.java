@@ -8,6 +8,6 @@ public class Wallet {
     }
 
     public Money valueIn(Currency currency) {
-        throw new NotImplementedException();
+        return new Money(new Amount(0), currency);
     }
 }
