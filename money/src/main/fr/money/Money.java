@@ -2,9 +2,11 @@ package fr.money;
 
 public class Money {
     private final Amount amount;
+    private final Currency currency;
 
-    public Money(Amount amount, Currency dinar) {
+    public Money(Amount amount, Currency currency) {
         this.amount = amount;
+        this.currency = currency;
     }
 
     @Override
@@ -14,11 +16,15 @@ public class Money {
 
         Money money = (Money) o;
 
-        return amount.equals(money.amount);
+        if (!amount.equals(money.amount)) return false;
+        return currency == money.currency;
     }
 
     @Override
     public int hashCode() {
-        return amount.hashCode();
+        int result = amount.hashCode();
+        result = 31 * result + currency.hashCode();
+        return result;
     }
+
 }
