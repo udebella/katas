@@ -1,9 +1,9 @@
 package fr.money;
 
-import org.assertj.core.api.Assertions;
 import org.junit.Test;
 
 import static fr.money.Currency.*;
+import static org.assertj.core.api.Assertions.*;
 
 public class WalletFeature {
     @Test
@@ -25,6 +25,9 @@ public class WalletFeature {
         wallet.put(new Money(new Amount(11), YENS));
         wallet.put(new Money(new Amount(5).cents(), EUROS));
 
-        Assertions.assertThat(wallet.value()).isEqualTo(new Money(new Amount(3453).cents(), EUROS));
+        final Money valueInEuros = wallet.valueIn(Currency.EUROS);
+
+        final Money expectedValue = new Money(new Amount(3453).cents(), EUROS);
+        assertThat(valueInEuros).isEqualTo(expectedValue);
     }
 }

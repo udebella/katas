@@ -7,7 +7,7 @@ public class Wallet {
         throw new NotImplementedException();
     }
 
-    public Money value() {
+    public Money valueIn(Currency currency) {
         throw new NotImplementedException();
     }
 }
