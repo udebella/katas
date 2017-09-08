@@ -22,11 +22,16 @@ public class AmountTest {
 
     @Test
     public void amount_can_be_converted_to_cents() throws Exception {
-        assertThat(new Amount(0).cents()).isNotNull();
+        final Amount cents = new Amount(0).cents();
+
+        assertThat(cents).isNotNull();
     }
 
     @Test
     public void amount_different_from_zero_should_be_divided_by_100_when_converted_to_cents() throws Exception {
-        assertThat(new Amount(100).cents()).isEqualTo(new Amount(1));
+        final Amount cents = new Amount(100).cents();
+        final Amount amount = new Amount(1);
+
+        assertThat(cents).isEqualTo(amount);
     }
 }
