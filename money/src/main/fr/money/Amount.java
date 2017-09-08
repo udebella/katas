@@ -1,7 +1,5 @@
 package fr.money;
 
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
-
 public class Amount {
     private final int value;
 
@@ -10,7 +8,7 @@ public class Amount {
     }
 
     public Amount cents() {
-        throw new NotImplementedException();
+        return this;
     }
 
     @Override

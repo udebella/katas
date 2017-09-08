@@ -19,4 +19,9 @@ public class AmountTest {
 
         assertThat(zero1).isEqualTo(zero2);
     }
+
+    @Test
+    public void amount_can_be_converted_to_cents() throws Exception {
+        assertThat(new Amount(0).cents()).isNotNull();
+    }
 }
