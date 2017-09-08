@@ -37,6 +37,9 @@ public class AmountTest {
 
     @Test
     public void amounts_should_not_be_rounded_when_converted_to_cents() throws Exception {
-        assertThat(new Amount(234).cents()).isNotEqualTo(new Amount(200).cents());
+        final Amount cents = new Amount(234).cents();
+        final Amount otherAmountAsCents = new Amount(200).cents();
+
+        assertThat(cents).isNotEqualTo(otherAmountAsCents);
     }
 }
