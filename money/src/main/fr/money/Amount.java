@@ -8,7 +8,7 @@ public class Amount {
     }
 
     public Amount cents() {
-        return this;
+        return new Amount(value / 100);
     }
 
     @Override
