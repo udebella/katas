@@ -1,14 +1,20 @@
 package fr.money;
 
+import java.math.BigDecimal;
+
 public class Amount {
-    private final int value;
+    private final BigDecimal value;
 
     public Amount(int value) {
-        this.value = value;
+        this.value = new BigDecimal(value);
+    }
+
+    private Amount(BigDecimal divide) {
+        this.value = divide;
     }
 
     public Amount cents() {
-        return new Amount(value / 100);
+        return new Amount(value.divide(new BigDecimal(100)));
     }
 
     @Override
@@ -18,11 +24,11 @@ public class Amount {
 
         Amount amount = (Amount) o;
 
-        return value == amount.value;
+        return value.equals(amount.value);
     }
 
     @Override
     public int hashCode() {
-        return value;
+        return value.hashCode();
     }
 }
