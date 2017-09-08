@@ -18,7 +18,7 @@ public class WalletFeature {
         // coins
         wallet.put(new Money(new Amount(170), WONS));
         wallet.put(new Money(new Amount(10), FORINTS));
-        wallet.put(new Money(new Amount(25), PENCES));
+        wallet.put(new Money(new Amount(25).cents(), POUND));
         wallet.put(new Money(new Amount(10).cents(), HONG_KONG_DOLLARS));
         wallet.put(new Money(new Amount(2), CZECK_KORUNAS));
         wallet.put(new Money(new Amount(11).cents(), DOLLARS));
