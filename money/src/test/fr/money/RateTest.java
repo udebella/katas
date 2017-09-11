@@ -27,4 +27,11 @@ public class RateTest {
     public void rate_cannot_be_divided_by_zero() throws Exception {
         new Rate(12).divide(new Rate(0));
     }
+
+    @Test
+    public void rate_divided_by_itself_should_be_one() throws Exception {
+        final Rate rate = new Rate(2);
+
+        assertThat(rate.divide(rate)).isEqualTo(new Rate(1));
+    }
 }
