@@ -3,21 +3,25 @@ package fr.money;
 import java.math.BigDecimal;
 
 public class Rate {
-    private final int rate;
+    private final BigDecimal rate;
 
     public Rate(int rate) {
+        this.rate = new BigDecimal(rate);
+    }
+
+    private Rate(BigDecimal rate) {
         this.rate = rate;
     }
 
     public Rate divide(Rate rate) {
-        if (rate.rate == 0) {
+        if (BigDecimal.ZERO.equals(rate.rate)) {
             throw new ArithmeticException();
         }
-        return new Rate(this.rate / rate.rate);
+        return new Rate(this.rate.divide(rate.rate));
     }
 
     public <T extends RateVisitor> T accept(RateVisitor rateVisitor) {
-        return rateVisitor.visit(new BigDecimal(rate));
+        return rateVisitor.visit(rate);
     }
 
     @Override
@@ -27,11 +31,11 @@ public class Rate {
 
         Rate rate1 = (Rate) o;
 
-        return rate == rate1.rate;
+        return rate.equals(rate1.rate);
     }
 
     @Override
     public int hashCode() {
-        return rate;
+        return rate.hashCode();
     }
 }

@@ -39,4 +39,9 @@ public class RateTest {
     public void rate_can_be_divided_by_any_non_zero_rate() throws Exception {
         assertThat(new Rate(4).divide(new Rate(2))).isEqualTo(new Rate(2));
     }
+
+    @Test
+    public void should_not_rely_on_euclidean_division() throws Exception {
+        assertThat(new Rate(3).divide(new Rate(2))).isNotEqualTo(new Rate(1));
+    }
 }
