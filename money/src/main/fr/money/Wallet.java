@@ -12,6 +12,6 @@ public class Wallet {
 
     public Money valueIn(Currency currency) {
         return monies.stream()
-                .reduce(new Money(new Amount(0), Currency.EUROS), Money::add);
+                .reduce(new Money(new Amount(0), currency), Money::add);
     }
 }

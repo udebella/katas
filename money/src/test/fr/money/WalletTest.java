@@ -3,7 +3,9 @@ package fr.money;
 import org.junit.Before;
 import org.junit.Test;
 
+import static fr.money.Currency.DOLLARS;
 import static fr.money.Currency.EUROS;
+import static fr.money.Currency.POUND;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class WalletTest {
@@ -51,5 +53,15 @@ public class WalletTest {
 
         Money twentyEuros = new Money(new Amount(20), EUROS);
         assertThat(wallet.valueIn(EUROS)).isEqualTo(twentyEuros);
+    }
+
+    @Test
+    public void putting_two_monies_with_different_currencies_should_update_the_value() throws Exception {
+        final Money ninetyOnePounds = new Money(new Amount(91), POUND);
+
+        wallet.put(ninetyOnePounds);
+
+        Money oneHundredTwentyDollars = new Money(new Amount(120), DOLLARS);
+        assertThat(wallet.valueIn(DOLLARS)).isEqualTo(oneHundredTwentyDollars);
     }
 }

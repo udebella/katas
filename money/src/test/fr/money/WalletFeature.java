@@ -27,7 +27,7 @@ public class WalletFeature {
 
         final Money valueInEuros = wallet.valueIn(Currency.EUROS);
 
-        final Money expectedValue = new Money(new Amount(3453).cents(), EUROS);
+        final Money expectedValue = new Money(new Amount(3411).cents(), EUROS);
         assertThat(valueInEuros).isEqualTo(expectedValue);
     }
 }
