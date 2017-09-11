@@ -2,11 +2,13 @@ package fr.money;
 
 import java.math.BigDecimal;
 
+import static java.math.BigDecimal.ROUND_CEILING;
+
 public class Amount implements RateVisitor {
     private final BigDecimal value;
 
     public Amount(int value) {
-        this.value = new BigDecimal(value);
+        this(new BigDecimal(value).setScale(2, ROUND_CEILING));
     }
 
     private Amount(BigDecimal divide) {
@@ -23,7 +25,7 @@ public class Amount implements RateVisitor {
 
     @Override
     public Amount visit(BigDecimal rate) {
-        return new Amount(value.multiply(rate));
+        return new Amount(value.multiply(rate).setScale(2, ROUND_CEILING));
     }
 
     @Override
@@ -39,5 +41,12 @@ public class Amount implements RateVisitor {
     @Override
     public int hashCode() {
         return value.hashCode();
+    }
+
+    @Override
+    public String toString() {
+        return "Amount{" +
+                "value=" + value +
+                '}';
     }
 }

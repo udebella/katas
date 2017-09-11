@@ -49,4 +49,12 @@ public class MoneyTest {
 
         assertThat(money.to(EUROS)).isEqualTo(money);
     }
+
+    @Test
+    public void convert_to_another_currency_should_update_the_value() throws Exception {
+        final Amount amount = new Amount(100);
+        final Money money = new Money(amount, EUROS);
+
+        assertThat(money.to(DOLLARS)).isEqualTo(new Money(new Amount(120), DOLLARS));
+    }
 }

@@ -10,7 +10,9 @@ public class Money {
     }
 
     public Money to(Currency currency) {
-        return new Money(amount, currency);
+        final Rate conversionRate = this.currency.to(currency);
+        final Amount newAmount = amount.apply(conversionRate);
+        return new Money(newAmount, currency);
     }
 
     @Override
@@ -29,5 +31,13 @@ public class Money {
         int result = amount.hashCode();
         result = 31 * result + currency.hashCode();
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Money{" +
+                "amount=" + amount +
+                ", currency=" + currency +
+                '}';
     }
 }
