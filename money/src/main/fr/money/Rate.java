@@ -9,8 +9,8 @@ public class Rate {
         this.rate = rate;
     }
 
-    public BigDecimal getRate() {
-        return new BigDecimal(rate);
+    public <T extends RateVisitor> T accept(RateVisitor rateVisitor) {
+        return rateVisitor.visit(new BigDecimal(rate));
     }
 
     @Override

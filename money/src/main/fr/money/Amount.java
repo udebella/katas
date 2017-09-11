@@ -2,7 +2,7 @@ package fr.money;
 
 import java.math.BigDecimal;
 
-public class Amount {
+public class Amount implements RateVisitor {
     private final BigDecimal value;
 
     public Amount(int value) {
@@ -18,7 +18,12 @@ public class Amount {
     }
 
     public Amount apply(Rate rate) {
-        return new Amount(value.multiply(rate.getRate()));
+        return rate.accept(this);
+    }
+
+    @Override
+    public Amount visit(BigDecimal rate) {
+        return new Amount(value.multiply(rate));
     }
 
     @Override
