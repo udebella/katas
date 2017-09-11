@@ -20,6 +20,7 @@ public class CurrencyTest {
 
     @Test
     public void conversion_rate_from_euros_to_other_currencies_should_be_right() throws Exception {
+        // FIXME Illisible !
         assertThat(DINAR.to(EUROS)).isEqualTo(new Rate(new BigDecimal(7135569l).divide(new BigDecimal(10000000000l))));
         assertThat(WONS.to(EUROS)).isEqualTo(new Rate(new BigDecimal(7341282l).divide(new BigDecimal(10000000000l))));
         assertThat(FORINTS.to(EUROS)).isEqualTo(new Rate(new BigDecimal(32611532l).divide(new BigDecimal(10000000000l))));
