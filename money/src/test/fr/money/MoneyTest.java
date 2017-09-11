@@ -57,4 +57,13 @@ public class MoneyTest {
 
         assertThat(money.to(DOLLARS)).isEqualTo(new Money(new Amount(120), DOLLARS));
     }
+
+    @Test
+    public void should_be_able_to_add_same_money() throws Exception {
+        final Money zeroMoney = new Money(new Amount(0), EUROS);
+
+        final Money addResult = zeroMoney.add(zeroMoney);
+
+        assertThat(addResult).isEqualTo(zeroMoney);
+    }
 }

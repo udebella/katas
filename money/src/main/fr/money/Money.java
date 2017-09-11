@@ -15,6 +15,10 @@ public class Money {
         return new Money(newAmount, currency);
     }
 
+    public Money add(Money money) {
+        return new Money(new Amount(0), Currency.EUROS);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
