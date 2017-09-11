@@ -10,6 +10,9 @@ public class Rate {
     }
 
     public Rate divide(Rate rate) {
+        if (rate.rate == 0) {
+            throw new ArithmeticException();
+        }
         return new Rate(this.rate);
     }
 

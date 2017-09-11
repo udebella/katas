@@ -22,4 +22,9 @@ public class RateTest {
     public void any_rate_can_be_divided_by_one() throws Exception {
         assertThat(new Rate(12).divide(new Rate(1))).isEqualTo(new Rate(12));
     }
+
+    @Test(expected = ArithmeticException.class)
+    public void rate_cannot_be_divided_by_zero() throws Exception {
+        new Rate(12).divide(new Rate(0));
+    }
 }
