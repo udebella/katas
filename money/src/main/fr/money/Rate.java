@@ -13,10 +13,7 @@ public class Rate {
         if (rate.rate == 0) {
             throw new ArithmeticException();
         }
-        if (rate.equals(this)) {
-            return new Rate(1);
-        }
-        return new Rate(this.rate);
+        return new Rate(this.rate / rate.rate);
     }
 
     public <T extends RateVisitor> T accept(RateVisitor rateVisitor) {

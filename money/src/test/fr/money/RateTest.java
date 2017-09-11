@@ -34,4 +34,9 @@ public class RateTest {
 
         assertThat(rate.divide(rate)).isEqualTo(new Rate(1));
     }
+
+    @Test
+    public void rate_can_be_divided_by_any_non_zero_rate() throws Exception {
+        assertThat(new Rate(4).divide(new Rate(2))).isEqualTo(new Rate(2));
+    }
 }
