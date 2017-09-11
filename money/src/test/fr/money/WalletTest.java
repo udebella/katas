@@ -29,4 +29,14 @@ public class WalletTest {
 
         assertThat(wallet.valueIn(Currency.EUROS)).isEqualTo(zeroMoney);
     }
+
+    @Test
+    public void putting_ten_euros_in_the_wallet_should_update_the_value() throws Exception {
+        final Amount ten = new Amount(10);
+        final Money tenEuros = new Money(ten, Currency.EUROS);
+
+        wallet.put(tenEuros);
+
+        assertThat(wallet.valueIn(Currency.EUROS)).isEqualTo(tenEuros);
+    }
 }
