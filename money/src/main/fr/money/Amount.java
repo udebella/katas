@@ -29,7 +29,7 @@ public class Amount implements RateVisitor {
     }
 
     public Amount add(Amount amount) {
-        return new Amount(0);
+        return this;
     }
 
     @Override
