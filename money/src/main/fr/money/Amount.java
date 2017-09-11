@@ -17,6 +17,10 @@ public class Amount {
         return new Amount(value.divide(new BigDecimal(100)));
     }
 
+    public Amount apply(Rate rate) {
+        return new Amount(value);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

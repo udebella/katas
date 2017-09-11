@@ -42,4 +42,9 @@ public class AmountTest {
 
         assertThat(cents).isNotEqualTo(otherAmountAsCents);
     }
+
+    @Test
+    public void applying_one_rate_should_update_the_amount() throws Exception {
+        assertThat(new Amount(1).apply(new Rate(1))).isEqualTo(new Amount(1));
+    }
 }
