@@ -1,10 +1,16 @@
 package fr.money;
 
+import java.math.BigDecimal;
+
 public class Rate {
     private final int rate;
 
     public Rate(int rate) {
         this.rate = rate;
+    }
+
+    public BigDecimal getRate() {
+        return new BigDecimal(rate);
     }
 
     @Override

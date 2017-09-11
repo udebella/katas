@@ -18,7 +18,7 @@ public class Amount {
     }
 
     public Amount apply(Rate rate) {
-        return new Amount(value);
+        return new Amount(value.multiply(rate.getRate()));
     }
 
     @Override

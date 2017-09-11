@@ -51,4 +51,13 @@ public class AmountTest {
 
         assertThat(amount.apply(rate)).isEqualTo(expectedAmount);
     }
+
+    @Test
+    public void applying_rate_should_return_a_new_amount() throws Exception {
+        final Amount amount = new Amount(1);
+        final Rate rate = new Rate(2);
+        final Amount expectedAmount = new Amount(2);
+
+        assertThat(amount.apply(rate)).isEqualTo(expectedAmount);
+    }
 }
