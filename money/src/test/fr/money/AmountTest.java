@@ -83,4 +83,13 @@ public class AmountTest {
 
         assertThat(zero.add(ten)).isEqualTo(ten);
     }
+
+    @Test
+    public void adding_non_zero_to_non_zero() throws Exception {
+        final Amount ten = new Amount(10);
+        final Amount five = new Amount(5);
+        final Amount fifteen = new Amount(15);
+
+        assertThat(five.add(ten)).isEqualTo(fifteen);
+    }
 }
