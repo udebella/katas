@@ -32,4 +32,13 @@ public class MoneyTest {
 
         assertThat(money1).isNotEqualTo(money2);
     }
+
+    @Test
+    public void money_can_be_converted_to_another_currency() throws Exception {
+        final Amount amount = new Amount(0);
+        final Money money1 = new Money(amount, EUROS);
+        final Money money2 = new Money(amount, DINAR);
+
+        assertThat(money1.to(DINAR)).isEqualTo(money2);
+    }
 }

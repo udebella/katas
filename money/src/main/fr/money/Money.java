@@ -9,6 +9,10 @@ public class Money {
         this.currency = currency;
     }
 
+    public Money to(Currency currency) {
+        return new Money(new Amount(0), currency);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -26,5 +30,4 @@ public class Money {
         result = 31 * result + currency.hashCode();
         return result;
     }
-
 }
