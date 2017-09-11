@@ -1,13 +1,17 @@
 package fr.money;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Wallet {
-    private Money money = new Money(new Amount(0), Currency.EUROS);
+    private List<Money> monies = new ArrayList<>();
 
     public void put(Money money) {
-        this.money = money;
+        monies.add(money);
     }
 
     public Money valueIn(Currency currency) {
-        return money;
+        return monies.stream()
+                .reduce(new Money(new Amount(0), Currency.EUROS), Money::add);
     }
 }

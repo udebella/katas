@@ -40,4 +40,16 @@ public class WalletTest {
 
         assertThat(wallet.valueIn(EUROS)).isEqualTo(tenEuros);
     }
+
+    @Test
+    public void putting_ten_euros_twice_in_the_wallet_should_update_the_value() throws Exception {
+        final Amount ten = new Amount(10);
+        final Money tenEuros = new Money(ten, EUROS);
+
+        wallet.put(tenEuros);
+        wallet.put(tenEuros);
+
+        Money twentyEuros = new Money(new Amount(20), EUROS);
+        assertThat(wallet.valueIn(EUROS)).isEqualTo(twentyEuros);
+    }
 }
