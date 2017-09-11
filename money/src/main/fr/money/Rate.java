@@ -1,6 +1,7 @@
 package fr.money;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 public class Rate {
     private final BigDecimal rate;
@@ -9,7 +10,7 @@ public class Rate {
         this.rate = new BigDecimal(rate);
     }
 
-    private Rate(BigDecimal rate) {
+    public Rate(BigDecimal rate) {
         this.rate = rate;
     }
 
@@ -17,7 +18,9 @@ public class Rate {
         if (BigDecimal.ZERO.equals(rate.rate)) {
             throw new ArithmeticException();
         }
-        return new Rate(this.rate.divide(rate.rate));
+        return new Rate(this.rate
+                .divide(rate.rate, 10, RoundingMode.CEILING)
+                .stripTrailingZeros());
     }
 
     public <T extends RateVisitor> T accept(RateVisitor rateVisitor) {
@@ -37,5 +40,12 @@ public class Rate {
     @Override
     public int hashCode() {
         return rate.hashCode();
+    }
+
+    @Override
+    public String toString() {
+        return "Rate{" +
+                "rate=" + rate +
+                '}';
     }
 }

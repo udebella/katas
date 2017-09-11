@@ -13,15 +13,16 @@ public enum Currency {
     EUROS(100),
     DINAR(140143);
 
-    private final BigDecimal rate;
+    private final Rate rate;
 
     Currency(int rateInCents) {
-        this.rate = new BigDecimal(rateInCents).divide(new BigDecimal(100), 2, BigDecimal.ROUND_CEILING);
+        final BigDecimal hundred = new BigDecimal(100);
+        final BigDecimal divide = new BigDecimal(rateInCents).divide(hundred, 2, BigDecimal.ROUND_CEILING);
+        this.rate = new Rate(divide);
     }
 
-    public BigDecimal to(Currency currency) {
+    public Rate to(Currency currency) {
         return currency.rate
-                .divide(this.rate, 10, BigDecimal.ROUND_CEILING)
-                .stripTrailingZeros();
+                .divide(this.rate);
     }
 }
