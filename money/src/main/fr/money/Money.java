@@ -16,7 +16,8 @@ public class Money {
     }
 
     public Money add(Money money) {
-        return new Money(money.amount.add(amount), Currency.EUROS);
+        final Money moneyWithSameCurrency = money.to(this.currency);
+        return new Money(amount.add(moneyWithSameCurrency.amount), this.currency);
     }
 
     @Override

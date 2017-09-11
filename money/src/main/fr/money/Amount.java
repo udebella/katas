@@ -2,13 +2,13 @@ package fr.money;
 
 import java.math.BigDecimal;
 
-import static java.math.BigDecimal.ROUND_CEILING;
+import static java.math.BigDecimal.ROUND_HALF_UP;
 
 public class Amount implements RateVisitor {
     private final BigDecimal value;
 
     public Amount(int value) {
-        this(new BigDecimal(value).setScale(2, ROUND_CEILING));
+        this(new BigDecimal(value).setScale(2, ROUND_HALF_UP));
     }
 
     private Amount(BigDecimal divide) {
@@ -25,7 +25,7 @@ public class Amount implements RateVisitor {
 
     @Override
     public Amount visit(BigDecimal rate) {
-        return new Amount(value.multiply(rate).setScale(2, ROUND_CEILING));
+        return new Amount(value.multiply(rate).setScale(2, ROUND_HALF_UP));
     }
 
     public Amount add(Amount amount) {

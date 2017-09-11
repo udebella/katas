@@ -77,4 +77,15 @@ public class MoneyTest {
         Money fifteenEuros = new Money(new Amount(15), EUROS);
         assertThat(addResult).isEqualTo(fifteenEuros);
     }
+
+    @Test
+    public void should_be_able_to_add_money_with_different_currency() throws Exception {
+        final Money fiveEuros = new Money(new Amount(5), EUROS);
+        final Money ninetyOnePounds = new Money(new Amount(91), POUND);
+
+        final Money addResult = fiveEuros.add(ninetyOnePounds);
+
+        Money oneHundredFiveEuros = new Money(new Amount(105), EUROS);
+        assertThat(addResult).isEqualTo(oneHundredFiveEuros);
+    }
 }
