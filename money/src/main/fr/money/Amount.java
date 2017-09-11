@@ -29,6 +29,9 @@ public class Amount implements RateVisitor {
     }
 
     public Amount add(Amount amount) {
+        if (new Amount(0).equals(this)) {
+            return amount;
+        }
         return this;
     }
 

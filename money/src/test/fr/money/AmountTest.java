@@ -75,4 +75,12 @@ public class AmountTest {
 
         assertThat(ten.add(zero)).isEqualTo(ten);
     }
+
+    @Test
+    public void adding_zero_to_non_zero() throws Exception {
+        final Amount ten = new Amount(10);
+        final Amount zero = new Amount(0);
+
+        assertThat(zero.add(ten)).isEqualTo(ten);
+    }
 }
