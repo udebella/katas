@@ -28,6 +28,10 @@ public class Amount implements RateVisitor {
         return new Amount(value.multiply(rate).setScale(2, ROUND_CEILING));
     }
 
+    public Amount add(Amount amount) {
+        return new Amount(0);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

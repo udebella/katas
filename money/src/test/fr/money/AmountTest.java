@@ -60,4 +60,9 @@ public class AmountTest {
 
         assertThat(amount.apply(rate)).isEqualTo(expectedAmount);
     }
+
+    @Test
+    public void adding_zero_amount_to_zero_amount_should_produce_zero_amount() throws Exception {
+        assertThat(new Amount(0).add(new Amount(0))).isEqualTo(new Amount(0));
+    }
 }
