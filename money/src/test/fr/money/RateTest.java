@@ -12,4 +12,9 @@ public class RateTest {
 
         assertThat(rate1).isEqualTo(rate2);
     }
+
+    @Test
+    public void rates_can_be_divided() throws Exception {
+        assertThat(new Rate(0).divide(new Rate(1))).isEqualTo(new Rate(0));
+    }
 }

@@ -9,6 +9,10 @@ public class Rate {
         this.rate = rate;
     }
 
+    public Rate divide(Rate rate) {
+        return new Rate(0);
+    }
+
     public <T extends RateVisitor> T accept(RateVisitor rateVisitor) {
         return rateVisitor.visit(new BigDecimal(rate));
     }
