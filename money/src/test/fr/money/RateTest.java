@@ -14,7 +14,12 @@ public class RateTest {
     }
 
     @Test
-    public void rates_can_be_divided() throws Exception {
+    public void zero_rate_can_be_divided_by_one() throws Exception {
         assertThat(new Rate(0).divide(new Rate(1))).isEqualTo(new Rate(0));
+    }
+
+    @Test
+    public void any_rate_can_be_divided_by_one() throws Exception {
+        assertThat(new Rate(12).divide(new Rate(1))).isEqualTo(new Rate(12));
     }
 }

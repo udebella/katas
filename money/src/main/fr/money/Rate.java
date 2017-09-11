@@ -10,7 +10,7 @@ public class Rate {
     }
 
     public Rate divide(Rate rate) {
-        return new Rate(0);
+        return new Rate(this.rate);
     }
 
     public <T extends RateVisitor> T accept(RateVisitor rateVisitor) {
