@@ -16,7 +16,7 @@ public class Money {
     }
 
     public Money add(Money money) {
-        return new Money(new Amount(0), Currency.EUROS);
+        return new Money(money.amount.add(amount), Currency.EUROS);
     }
 
     @Override

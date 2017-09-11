@@ -66,4 +66,15 @@ public class MoneyTest {
 
         assertThat(addResult).isEqualTo(zeroMoney);
     }
+
+    @Test
+    public void should_be_able_to_add_money_with_same_currency() throws Exception {
+        final Money fiveEuros = new Money(new Amount(5), EUROS);
+        final Money tenEuros = new Money(new Amount(10), EUROS);
+
+        final Money addResult = tenEuros.add(fiveEuros);
+
+        Money fifteenEuros = new Money(new Amount(15), EUROS);
+        assertThat(addResult).isEqualTo(fifteenEuros);
+    }
 }
