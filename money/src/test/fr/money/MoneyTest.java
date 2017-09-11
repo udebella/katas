@@ -41,4 +41,12 @@ public class MoneyTest {
 
         assertThat(money1.to(DINAR)).isEqualTo(money2);
     }
+
+    @Test
+    public void convert_to_same_money_should_return_initial_money() throws Exception {
+        final Amount amount = new Amount(10);
+        final Money money = new Money(amount, EUROS);
+
+        assertThat(money.to(EUROS)).isEqualTo(money);
+    }
 }

@@ -10,7 +10,7 @@ public class Money {
     }
 
     public Money to(Currency currency) {
-        return new Money(new Amount(0), currency);
+        return new Money(amount, currency);
     }
 
     @Override
