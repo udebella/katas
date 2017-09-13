@@ -9,6 +9,12 @@ public enum DrinkType {
     CHOCOLATE("Chocolate", "H", 50),
     TEA("Tea", "T", 40);
 
+    private static final String COMMAND_SEPARATOR = ":";
+    private static final String LINE_REPORT_SEPARATOR = " | ";
+    private static final String TOUILLETTE = "0";
+    private static final String EXTRA_HOT = "h";
+    private static final String MESSAGE_COMMAND = "M";
+
     private final String name;
     private final String command;
     private final int price;
@@ -19,41 +25,73 @@ public enum DrinkType {
         this.price = price;
     }
 
-    static Optional<DrinkType> getDrinkType(String drinkType) {
+    static Optional<DrinkType> findByName(String drinkType) {
         return Stream.of(values())
                 .filter(dt -> dt.name.equals(drinkType))
                 .findAny();
     }
 
-    public String formatMessage(CustomerCommand customerCommand, BeverageQuantityChecker beverageQuantityChecker, EmailNotifier emailNotifier) {
-        if (this.price > customerCommand.getMoney()) {
-            return "M:Not enough money : " + (this.price - customerCommand.getMoney()) + " is missing";
+    public String drinkMakerFormat(CustomerCommand customerCommand, boolean hasEnoughBeverage) {
+        if (checkEnoughMoney(customerCommand)) {
+            return customerMessage("Not enough money : " + (this.price - customerCommand.getMoney()) + " is missing");
         }
 
+        if (hasEnoughBeverage) {
+            return customerMessage(" Not enough beverage");
+        }
+
+        return formatCommand(customerCommand);
+    }
+
+    private String customerMessage(String message) {
+        return MESSAGE_COMMAND + COMMAND_SEPARATOR + message;
+    }
+
+    private boolean checkEnoughMoney(CustomerCommand customerCommand) {
+        return this.price > customerCommand.getMoney();
+    }
+
+    private boolean checkEnoughBeverage(BeverageQuantityChecker beverageQuantityChecker, EmailNotifier emailNotifier) {
         final boolean enoughDrink = !beverageQuantityChecker.isEmpty(name);
-        if(!enoughDrink){
+        if (!enoughDrink) {
             emailNotifier.notifyMissingDrink(name);
-            return "M: Not enough beverage";
+            return true;
         }
+        return false;
+    }
 
+    private String formatCommand(CustomerCommand customerCommand) {
+        return command +
+                extraHot(customerCommand.isExtraHot()) +
+                sugar(customerCommand.getSugarNumber());
+    }
+
+    private String extraHot(boolean isExtraHot) {
         StringBuilder result = new StringBuilder();
-        result.append(command);
-
-        final int sugarNumber = customerCommand.getSugarNumber();
-        if (customerCommand.isExtraHot()) {
-            result.append("h");
+        if (isExtraHot) {
+            result.append(EXTRA_HOT);
         }
+        return result.toString();
+    }
+
+    private String sugar(int sugarNumber) {
+        StringBuilder result = new StringBuilder();
         if (sugarNumber > 0) {
-            result.append(":")
+            result.append(COMMAND_SEPARATOR)
                     .append(sugarNumber)
-                    .append(":0");
+                    .append(COMMAND_SEPARATOR)
+                    .append(TOUILLETTE);
         } else {
-            result.append("::");
+            result
+                    .append(COMMAND_SEPARATOR)
+                    .append(COMMAND_SEPARATOR);
         }
         return result.toString();
     }
 
     public String lineReport(int numberSold) {
-        return name + " | " + numberSold + " | " + numberSold * price;
+        return name + LINE_REPORT_SEPARATOR
+                + numberSold + LINE_REPORT_SEPARATOR
+                + numberSold * price;
     }
 }
