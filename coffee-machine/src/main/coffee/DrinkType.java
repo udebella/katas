@@ -31,7 +31,7 @@ public enum DrinkType {
             if (sugarNumber > 0) {
                 return this.command + ":" + sugarNumber + ":0";
             }
-            return this.command + "::";
+            return this.command + (customerCommand.isExtraHot() ? "h" : "") + "::";
         }
         return "M:Not enough money : " + (this.price - customerCommand.getMoney()) + " is missing";
     }
