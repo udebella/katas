@@ -4,10 +4,10 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.verify;
 
 @RunWith(MockitoJUnitRunner.class)
 public class CoffeeMachineTest {
@@ -85,10 +85,10 @@ public class CoffeeMachineTest {
     public void report_should_be_zero_for_each_drink_by_default() throws Exception {
         coffeeMachine.report(printer);
 
-        Mockito.verify(printer).print("Drink type   | Number sold | Money earned");
-        Mockito.verify(printer).print("Orange Juice | 0 | 0");
-        Mockito.verify(printer).print("Chocolate | 0 | 0");
-        Mockito.verify(printer).print("Coffee | 0 | 0");
-        Mockito.verify(printer).print("Tea | 0 | 0");
+        verify(printer).print("Drink type   | Number sold | Money earned");
+        verify(printer).print("Orange Juice | 0 | 0");
+        verify(printer).print("Chocolate | 0 | 0");
+        verify(printer).print("Coffee | 0 | 0");
+        verify(printer).print("Tea | 0 | 0");
     }
 }
