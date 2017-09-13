@@ -141,4 +141,14 @@ public class CoffeeMachineTest {
 
         verify(emailNotifier).notifyMissingDrink("Chocolate");
     }
+
+    @Test
+    public void should_send_a_message_to_user_when_not_enough_beverage() throws Exception {
+        when(beverageChecker.isEmpty("Chocolate"))
+                .thenReturn(true);
+
+        coffeeMachine.handle(new CustomerCommand("Chocolate"));
+
+        assertThat(coffeeMachine.handle(new CustomerCommand("Chocolate"))).isEqualTo("M: Not enough beverage");
+    }
 }

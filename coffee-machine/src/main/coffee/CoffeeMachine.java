@@ -3,10 +3,11 @@ package coffee;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.NoSuchElementException;
+import java.util.Optional;
 import java.util.stream.Stream;
 
 public class CoffeeMachine {
-    private Map<DrinkType,Integer> soldDrink = new HashMap<>();
+    private Map<DrinkType, Integer> soldDrink = new HashMap<>();
     private BeverageQuantityChecker beverageQuantityChecker;
     private EmailNotifier emailNotifier;
 
@@ -16,22 +17,14 @@ public class CoffeeMachine {
     }
 
     public String handle(CustomerCommand customerCommand) {
-        return DrinkType
-                .getDrinkType(customerCommand.getDrinkType())
-                .filter(drinkType -> {
-                    final boolean EnoughDrink = !beverageQuantityChecker.isEmpty(drinkType.getName());
-                    if(!EnoughDrink){
-                        emailNotifier.notifyMissingDrink(drinkType.getName());
-                    }
-                    return EnoughDrink;
-                })
-                .map(drinkType -> {
-                    final Integer numberSold = soldDrink.getOrDefault(drinkType, 0);
-                    soldDrink.put(drinkType, numberSold + 1);
-                    return drinkType;
-                })
-                .map(drinkType -> drinkType.formatMessage(customerCommand))
-                .orElse("");
+        final Optional<DrinkType> drinkType = DrinkType.getDrinkType(customerCommand.getDrinkType());
+        drinkType.ifPresent(dt -> {
+            final Integer numberSold = soldDrink.getOrDefault(dt, 0);
+            soldDrink.put(dt, numberSold + 1);
+        });
+        return drinkType
+                .map(dt -> dt.formatMessage(customerCommand, beverageQuantityChecker, emailNotifier))
+                .orElseThrow(NoSuchElementException::new);
     }
 
     public void report(Printer printer) {

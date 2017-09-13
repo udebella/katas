@@ -25,9 +25,15 @@ public enum DrinkType {
                 .findAny();
     }
 
-    public String formatMessage(CustomerCommand customerCommand) {
+    public String formatMessage(CustomerCommand customerCommand, BeverageQuantityChecker beverageQuantityChecker, EmailNotifier emailNotifier) {
         if (this.price > customerCommand.getMoney()) {
             return "M:Not enough money : " + (this.price - customerCommand.getMoney()) + " is missing";
+        }
+
+        final boolean enoughDrink = !beverageQuantityChecker.isEmpty(name);
+        if(!enoughDrink){
+            emailNotifier.notifyMissingDrink(name);
+            return "M: Not enough beverage";
         }
 
         StringBuilder result = new StringBuilder();
@@ -49,9 +55,5 @@ public enum DrinkType {
 
     public String lineReport(int numberSold) {
         return name + " | " + numberSold + " | " + numberSold * price;
-    }
-
-    public String getName() {
-        return name;
     }
 }
