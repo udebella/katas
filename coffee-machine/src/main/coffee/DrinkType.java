@@ -26,14 +26,25 @@ public enum DrinkType {
     }
 
     public String formatMessage(CustomerCommand customerCommand) {
-        if (this.price <= customerCommand.getMoney()) {
-            final int sugarNumber = customerCommand.getSugarNumber();
-            if (sugarNumber > 0) {
-                return this.command + ":" + sugarNumber + ":0";
-            }
-            return this.command + (customerCommand.isExtraHot() ? "h" : "") + "::";
+        if (this.price > customerCommand.getMoney()) {
+            return "M:Not enough money : " + (this.price - customerCommand.getMoney()) + " is missing";
         }
-        return "M:Not enough money : " + (this.price - customerCommand.getMoney()) + " is missing";
+
+        StringBuilder result = new StringBuilder();
+        result.append(command);
+
+        final int sugarNumber = customerCommand.getSugarNumber();
+        if (customerCommand.isExtraHot()) {
+            result.append("h");
+        }
+        if (sugarNumber > 0) {
+            result.append(":")
+                    .append(sugarNumber)
+                    .append(":0");
+        } else {
+            result.append("::");
+        }
+        return result.toString();
     }
 
 }
