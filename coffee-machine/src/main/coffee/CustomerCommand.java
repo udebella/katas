@@ -8,4 +8,8 @@ public class CustomerCommand {
         this.drinkType = drinkType;
         this.sugarNumber = sugarNumber;
     }
+
+    public String getDrinkType() {
+        return drinkType;
+    }
 }
