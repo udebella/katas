@@ -32,7 +32,7 @@ public enum DrinkType {
             }
             return this.command + "::";
         }
-        return "M:Not enough money : 50 is missing";
+        return "M:Not enough money : " + (this.price - customerCommand.getMoney()) + " is missing";
     }
 
 }
