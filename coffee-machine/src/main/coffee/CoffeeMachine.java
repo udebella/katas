@@ -1,17 +1,17 @@
 package coffee;
 
-import java.util.HashSet;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.NoSuchElementException;
-import java.util.Set;
 
 public class CoffeeMachine {
-    private Set<DrinkType> soldDrink = new HashSet<>();
+    private Map<DrinkType,Integer> soldDrink = new HashMap<>();
 
     public String handle(CustomerCommand customerCommand) {
         return DrinkType
                 .getDrinkType(customerCommand.getDrinkType())
                 .map(drinkType -> {
-                    soldDrink.add(drinkType);
+                    soldDrink.put(drinkType,soldDrink.getOrDefault(drinkType,0)+1);
                     return drinkType;
                 })
                 .map(drinkType -> drinkType.formatMessage(customerCommand))
@@ -21,8 +21,8 @@ public class CoffeeMachine {
     public void report(Printer printer) {
         printer.print("Drink type   | Number sold | Money earned");
         for (DrinkType drinkType : DrinkType.values()) {
-            if (soldDrink.contains(drinkType)) {
-                printer.print(drinkType.printReport(1));
+            if (soldDrink.containsKey(drinkType)) {
+                printer.print(drinkType.printReport(soldDrink.get(drinkType)));
             } else {
                 printer.print(drinkType.printReport(0));
             }

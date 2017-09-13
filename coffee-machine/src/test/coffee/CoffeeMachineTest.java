@@ -107,4 +107,18 @@ public class CoffeeMachineTest {
         verify(printer).print("Coffee | 1 | 60");
         verify(printer).print("Tea | 1 | 40");
     }
+
+    @Test
+    public void should_print_report_when_same_drink_is_sold_twice() throws Exception {
+        coffeeMachine.handle(new CustomerCommand("Chocolate"));
+        coffeeMachine.handle(new CustomerCommand("Chocolate"));
+
+        coffeeMachine.report(printer);
+
+        verify(printer).print("Drink type   | Number sold | Money earned");
+        verify(printer).print("Orange Juice | 0 | 0");
+        verify(printer).print("Chocolate | 2 | 100");
+        verify(printer).print("Coffee | 0 | 0");
+        verify(printer).print("Tea | 0 | 0");
+    }
 }
