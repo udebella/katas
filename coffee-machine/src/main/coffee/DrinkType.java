@@ -1,26 +1,22 @@
 package coffee;
 
-import java.util.Optional;
-import java.util.stream.Stream;
-
 public enum DrinkType {
-    COFFEE("Coffee", "C"),
-    CHOCOLATE("Chocolate", "H"),
-    TEA("Tea", "T");
+    COFFEE("Coffee", "C" , 60),
+    CHOCOLATE("Chocolate", "H" ,50),
+    TEA("Tea", "T" ,60);
 
     private final String name;
     private final String command;
+    private final int price;
 
-    DrinkType(String name, String command) {
+    DrinkType(String name, String command, int price) {
         this.name = name;
         this.command = command;
+        this.price = price;
     }
 
-    public static Optional<String> getCommandFromName(String name) {
-        return Stream.of(values())
-                .filter(drinkType -> drinkType.getName().equals(name))
-                .map(DrinkType::getCommand)
-                .findAny();
+    public  int getPrice() {
+        return price;
     }
 
     public String getCommand() {

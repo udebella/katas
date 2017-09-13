@@ -48,4 +48,10 @@ public class CoffeeMachineTest {
         CustomerCommand customerCustomer = new CustomerCommand("Chocolate", 2);
         assertThat(coffeeMachine.handle(customerCustomer)).isEqualTo("H:2:0");
     }
+
+    @Test
+    public void simple_chocolate_command_without_enough_money() throws Exception {
+        CustomerCommand customerCustomer = new CustomerCommand("Chocolate", 2, 0);
+        assertThat(coffeeMachine.handle(customerCustomer)).isEqualTo("M:Not enough money");
+    }
 }
