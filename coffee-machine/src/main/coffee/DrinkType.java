@@ -5,7 +5,8 @@ import java.util.Optional;
 
 public enum DrinkType {
     COFFEE("Coffee", "C"),
-    CHOCOLATE("Chocolate", "H");
+    CHOCOLATE("Chocolate", "H"),
+    TEA("Tea", "T");
 
     private final String name;
     private final String command;
