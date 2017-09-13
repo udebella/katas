@@ -91,4 +91,20 @@ public class CoffeeMachineTest {
         verify(printer).print("Coffee | 0 | 0");
         verify(printer).print("Tea | 0 | 0");
     }
+
+    @Test
+    public void should_print_report_for_each_drink() throws Exception {
+        coffeeMachine.handle(new CustomerCommand("Chocolate"));
+        coffeeMachine.handle(new CustomerCommand("Tea"));
+        coffeeMachine.handle(new CustomerCommand("Orange Juice"));
+        coffeeMachine.handle(new CustomerCommand("Coffee"));
+
+        coffeeMachine.report(printer);
+
+        verify(printer).print("Drink type   | Number sold | Money earned");
+        verify(printer).print("Orange Juice | 1 | 60");
+        verify(printer).print("Chocolate | 1 | 50");
+        verify(printer).print("Coffee | 1 | 60");
+        verify(printer).print("Tea | 1 | 40");
+    }
 }
