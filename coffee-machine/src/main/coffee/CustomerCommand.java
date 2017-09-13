@@ -12,4 +12,8 @@ public class CustomerCommand {
     public String getDrinkType() {
         return drinkType;
     }
+
+    public int getSugarNumber() {
+        return sugarNumber;
+    }
 }
