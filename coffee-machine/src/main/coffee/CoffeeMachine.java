@@ -1,21 +1,22 @@
 package coffee;
 
+import java.util.NoSuchElementException;
 import java.util.stream.Stream;
 
 public class CoffeeMachine {
 
-    public String handle(CustomerCommand customerCustomer) {
-        return  Stream.of(DrinkType.values())
-                .filter(drinkType -> drinkType.getPrice() <= customerCustomer.getMoney() )
-                .filter(drinkType -> drinkType.getName().equals(customerCustomer.getDrinkType()))
-                .map(DrinkType::getCommand)
+    public String handle(CustomerCommand customerCommand) {
+        final DrinkType drinkType = Stream.of(DrinkType.values())
+                .filter(dt -> dt.getName().equals(customerCommand.getDrinkType()))
                 .findAny()
-                .map(command -> {
-                    final int sugarNumber = customerCustomer.getSugarNumber();
-                    if (sugarNumber > 0) {
-                        return command + ":" + sugarNumber + ":0";
-                    }
-                    return command + "::";
-                }).orElse("M:Not enough money");
+                .orElseThrow(NoSuchElementException::new);
+        if (drinkType.getPrice() <= customerCommand.getMoney()) {
+            final int sugarNumber = customerCommand.getSugarNumber();
+            if (sugarNumber > 0) {
+                return drinkType.getCommand() + ":" + sugarNumber + ":0";
+            }
+            return drinkType.getCommand() + "::";
+        }
+        return "M:Not enough money : 50 is missing";
     }
 }

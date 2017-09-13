@@ -3,7 +3,7 @@ package coffee;
 public enum DrinkType {
     COFFEE("Coffee", "C" , 60),
     CHOCOLATE("Chocolate", "H" ,50),
-    TEA("Tea", "T" ,60);
+    TEA("Tea", "T" ,40);
 
     private final String name;
     private final String command;
