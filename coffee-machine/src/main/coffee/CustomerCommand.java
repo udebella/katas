@@ -5,6 +5,10 @@ public class CustomerCommand {
     private final int sugarNumber;
     private final int money;
 
+    public CustomerCommand(String drinkType) {
+        this(drinkType, 0);
+    }
+
     public CustomerCommand(String drinkType, int sugarNumber) {
         this(drinkType, sugarNumber, 100);
     }

@@ -15,19 +15,19 @@ public class CoffeeMachineTest {
 
     @Test
     public void simple_tea_command() throws Exception {
-        CustomerCommand customerCustomer = new CustomerCommand("Tea", 0);
+        CustomerCommand customerCustomer = new CustomerCommand("Tea");
         assertThat(coffeeMachine.handle(customerCustomer)).isEqualTo("T::");
     }
 
     @Test
     public void simple_chocolate_command() throws Exception {
-        CustomerCommand customerCustomer = new CustomerCommand("Chocolate", 0);
+        CustomerCommand customerCustomer = new CustomerCommand("Chocolate");
         assertThat(coffeeMachine.handle(customerCustomer)).isEqualTo("H::");
     }
 
     @Test
     public void simple_coffee_command() throws Exception {
-        CustomerCommand customerCustomer = new CustomerCommand("Coffee", 0);
+        CustomerCommand customerCustomer = new CustomerCommand("Coffee");
         assertThat(coffeeMachine.handle(customerCustomer)).isEqualTo("C::");
     }
 
@@ -59,5 +59,11 @@ public class CoffeeMachineTest {
     public void simple_chocolate_command_without_enough_money() throws Exception {
         CustomerCommand customerCustomer = new CustomerCommand("Tea", 0, 10);
         assertThat(coffeeMachine.handle(customerCustomer)).isEqualTo("M:Not enough money : 30 is missing");
+    }
+
+    @Test
+    public void simple_orange_juice_command() throws Exception {
+        CustomerCommand customerCustomer = new CustomerCommand("Orange Juice");
+        assertThat(coffeeMachine.handle(customerCustomer)).isEqualTo("O::");
     }
 }

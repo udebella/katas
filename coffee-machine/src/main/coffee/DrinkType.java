@@ -5,6 +5,7 @@ import java.util.stream.Stream;
 
 public enum DrinkType {
     COFFEE("Coffee", "C", 60),
+    ORANGE_JUICE("Orange Juice", "O", 60),
     CHOCOLATE("Chocolate", "H", 50),
     TEA("Tea", "T", 40);
 
