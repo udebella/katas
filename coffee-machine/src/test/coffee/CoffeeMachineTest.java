@@ -42,4 +42,10 @@ public class CoffeeMachineTest {
         CustomerCommand customerCustomer = new CustomerCommand("Chocolate", 1);
         assertThat(coffeeMachine.handle(customerCustomer)).isEqualTo("H:1:0");
     }
+
+    @Test
+    public void simple_chocolate_command_with_two_sugar() throws Exception {
+        CustomerCommand customerCustomer = new CustomerCommand("Chocolate", 2);
+        assertThat(coffeeMachine.handle(customerCustomer)).isEqualTo("H:2:0");
+    }
 }
