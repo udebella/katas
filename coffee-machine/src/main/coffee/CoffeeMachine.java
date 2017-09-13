@@ -22,9 +22,9 @@ public class CoffeeMachine {
         printer.print("Drink type   | Number sold | Money earned");
         for (DrinkType drinkType : DrinkType.values()) {
             if (soldDrink.contains(drinkType)) {
-                printer.print(drinkType.getName() + " | 1 | " + drinkType.getPrice());
+                printer.print(drinkType.printReport(1));
             } else {
-                printer.print(drinkType.getName() + " | 0 | 0");
+                printer.print(drinkType.printReport(0));
             }
         }
     }

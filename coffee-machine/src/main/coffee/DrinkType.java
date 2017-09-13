@@ -47,11 +47,7 @@ public enum DrinkType {
         return result.toString();
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public int getPrice() {
-        return price;
+    public String printReport(int numberSold) {
+        return name + " | " + numberSold + " | " + numberSold * price;
     }
 }
