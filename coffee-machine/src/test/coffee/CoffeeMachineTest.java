@@ -2,11 +2,19 @@ package coffee;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.runners.MockitoJUnitRunner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+@RunWith(MockitoJUnitRunner.class)
 public class CoffeeMachineTest {
     private CoffeeMachine coffeeMachine;
+
+    @Mock
+    private Printer printer;
 
     @Before
     public void setUp() throws Exception {
@@ -71,5 +79,16 @@ public class CoffeeMachineTest {
     public void simple_extra_hot_chocolate_command() throws Exception {
         CustomerCommand customerCustomer = new CustomerCommand("Chocolate", 0, true);
         assertThat(coffeeMachine.handle(customerCustomer)).isEqualTo("Hh::");
+    }
+
+    @Test
+    public void report_should_be_zero_for_each_drink_by_default() throws Exception {
+        coffeeMachine.report(printer);
+
+        Mockito.verify(printer).print("Drink type   | Number sold | Money earned");
+        Mockito.verify(printer).print("Orange Juice | 0 | 0");
+        Mockito.verify(printer).print("Chocolate | 0 | 0");
+        Mockito.verify(printer).print("Coffee | 0 | 0");
+        Mockito.verify(printer).print("Tea | 0 | 0");
     }
 }

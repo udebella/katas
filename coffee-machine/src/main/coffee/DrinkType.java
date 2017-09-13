@@ -47,4 +47,7 @@ public enum DrinkType {
         return result.toString();
     }
 
+    public String getName() {
+        return name;
+    }
 }

@@ -11,4 +11,10 @@ public class CoffeeMachine {
                 .orElseThrow(NoSuchElementException::new);
     }
 
+    public void report(Printer printer) {
+        printer.print("Drink type   | Number sold | Money earned");
+        for (DrinkType drinkType : DrinkType.values()) {
+            printer.print(drinkType.getName() + " | 0 | 0");
+        }
+    }
 }
