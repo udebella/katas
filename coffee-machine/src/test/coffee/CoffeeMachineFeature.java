@@ -2,6 +2,7 @@ package coffee;
 
 import org.assertj.core.api.Assertions;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.*;
@@ -14,6 +15,7 @@ public class CoffeeMachineFeature {
         coffeeMachine = new CoffeeMachine();
     }
 
+    @Ignore
     @Test
     public void coffee_machine_feature() throws Exception {
         CustomerCommand customerCustomer = new CustomerCommand("Tea", 1);
