@@ -7,6 +7,8 @@ import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Matchers.any;
+import static org.mockito.Mockito.*;
 import static org.mockito.Mockito.verify;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -16,9 +18,17 @@ public class CoffeeMachineTest {
     @Mock
     private Printer printer;
 
+    @Mock
+    private EmailNotifier emailNotifier;
+
+    @Mock
+    private BeverageQuantityChecker beverageChecker;
+
     @Before
     public void setUp() throws Exception {
-        coffeeMachine = new CoffeeMachine();
+        when(beverageChecker.isEmpty(any()))
+                .thenReturn(false);
+        coffeeMachine = new CoffeeMachine(beverageChecker, emailNotifier);
     }
 
     @Test
@@ -120,5 +130,15 @@ public class CoffeeMachineTest {
         verify(printer).print("Chocolate | 2 | 100");
         verify(printer).print("Coffee | 0 | 0");
         verify(printer).print("Tea | 0 | 0");
+    }
+
+    @Test
+    public void should_send_an_email_when_not_enough_beverage() throws Exception {
+        when(beverageChecker.isEmpty("Chocolate"))
+                .thenReturn(true);
+
+        coffeeMachine.handle(new CustomerCommand("Chocolate"));
+
+        verify(emailNotifier).notifyMissingDrink("Chocolate");
     }
 }

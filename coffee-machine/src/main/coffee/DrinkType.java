@@ -50,4 +50,8 @@ public enum DrinkType {
     public String lineReport(int numberSold) {
         return name + " | " + numberSold + " | " + numberSold * price;
     }
+
+    public String getName() {
+        return name;
+    }
 }
