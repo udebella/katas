@@ -1,7 +1,7 @@
 package coffee;
 
-import java.util.Arrays;
 import java.util.Optional;
+import java.util.stream.Stream;
 
 public enum DrinkType {
     COFFEE("Coffee", "C"),
@@ -17,7 +17,7 @@ public enum DrinkType {
     }
 
     public static Optional<String> getCommandFromName(String name) {
-        return Arrays.stream(values())
+        return Stream.of(values())
                 .filter(drinkType -> drinkType.getName().equals(name))
                 .map(DrinkType::getCommand)
                 .findAny();
