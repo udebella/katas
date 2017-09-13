@@ -5,6 +5,9 @@ public class CoffeeMachine {
         if (customerCustomer.getDrinkType().equals("Chocolate")) {
             return "H::";
         }
+        if (customerCustomer.getDrinkType().equals("Coffee")) {
+            return "C::";
+        }
         return "T::";
     }
 }
