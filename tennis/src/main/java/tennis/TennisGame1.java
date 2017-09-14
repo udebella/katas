@@ -2,48 +2,47 @@ package tennis;
 
 public class TennisGame1 implements TennisGame {
 
-    private int m_score1 = 0;
-    private int m_score2 = 0;
-    private String player1Name;
-    private String player2Name;
+    private Player player1;
+    private Player player2;
 
     public TennisGame1(String player1Name, String player2Name) {
-        this.player1Name = player1Name;
-        this.player2Name = player2Name;
+        this.player1 = new Player(player1Name);
+        this.player2 = new Player(player2Name);
     }
 
     public void wonPoint(String playerName) {
-        if (player1Name.equals(playerName))
-            m_score1 += 1;
-        else
-            m_score2 += 1;
+        if (player1.getName().equals(playerName)) {
+            player1.incrementScore();
+        } else {
+            player2.incrementScore();
+        }
     }
 
     public String getScore() {
         String score;
 
-        score = formatScore(m_score1);
+        score = formatScore(player1.getScore());
         score += "-";
-        if (m_score1 == m_score2) {
+        if (player1.getScore() == player2.getScore()) {
             score += "All";
 
-            if(m_score1 > 2) {
+            if(player1.getScore() > 2) {
                 score = "Deuce";
             }
         } else {
-            score += formatScore(m_score2);
+            score += formatScore(player2.getScore());
 
-            if (m_score1 >= 4 || m_score2 >= 4) {
-                int minusResult = m_score1 - m_score2;
+            if (player1.getScore() >= 4 || player2.getScore() >= 4) {
+                int minusResult = player1.getScore() - player2.getScore();
                 if (Math.abs(minusResult) == 1) {
                     score = "Advantage ";
                 } else {
                     score = "Win for ";
                 }
                 if (minusResult > 0) {
-                    score += player1Name;
+                    score += player1.getName();
                 } else {
-                    score += player2Name;
+                    score += player2.getName();
                 }
             }
         }
