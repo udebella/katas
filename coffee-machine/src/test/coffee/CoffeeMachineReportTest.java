@@ -1,5 +1,7 @@
 package coffee;
 
+import coffee.interfaces.CustomerCommand;
+import coffee.interfaces.Printer;
 import org.junit.Test;
 import org.mockito.Mock;
 

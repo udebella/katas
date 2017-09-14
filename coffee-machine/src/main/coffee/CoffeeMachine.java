@@ -1,9 +1,15 @@
 package coffee;
 
+import coffee.exceptions.InvalidCommandException;
+import coffee.exceptions.NotEnoughBeverageException;
+import coffee.exceptions.NotEnoughMoneyException;
+import coffee.interfaces.BeverageQuantityChecker;
+import coffee.interfaces.CustomerCommand;
+import coffee.interfaces.EmailNotifier;
+import coffee.interfaces.Printer;
+
 import java.util.HashMap;
 import java.util.Map;
-import java.util.NoSuchElementException;
-import java.util.Optional;
 import java.util.stream.Stream;
 
 public class CoffeeMachine {
@@ -17,18 +23,30 @@ public class CoffeeMachine {
     }
 
     public String handle(CustomerCommand customerCommand) throws InvalidCommandException {
-        final DrinkType drinkType = DrinkType.findByName(customerCommand.getDrinkType())
-                .orElseThrow(InvalidCommandException::new);
+        try {
+            final DrinkType drinkType = DrinkType.findByName(customerCommand.getDrinkType())
+                    .orElseThrow(InvalidCommandException::new);
+            checkEnoughBeverage(drinkType);
+            checkEnoughMoney(drinkType, customerCommand);
+            addSoldReport(drinkType);
+            return drinkType.drinkMakerFormat(customerCommand);
+        } catch (NotEnoughBeverageException | NotEnoughMoneyException e) {
+            return e.getMessage();
+        }
+    }
 
+    private void checkEnoughBeverage(DrinkType drinkType) throws NotEnoughBeverageException {
         if (beverageQuantityChecker.isEmpty(drinkType.getCommand())) {
             emailNotifier.notifyMissingDrink(drinkType.getCommand());
-            return drinkType.formatErrorMessage("Not enough beverage");
+            throw new NotEnoughBeverageException();
         }
-        if (drinkType.checkEnoughMoney(customerCommand)) {
-            return drinkType.formatErrorMessage("Not enough money : " + (drinkType.getPrice() - customerCommand.getMoney()) + " is missing");
+    }
+
+    private void checkEnoughMoney(DrinkType drinkType, CustomerCommand customerCommand) throws NotEnoughMoneyException {
+        final int missingMoney = drinkType.hasEnoughMoney(customerCommand);
+        if (missingMoney > 0) {
+            throw new NotEnoughMoneyException(missingMoney);
         }
-        addSoldReport(drinkType);
-        return drinkType.drinkMakerFormat(customerCommand);
     }
 
     private void addSoldReport(DrinkType dt) {

@@ -1,5 +1,6 @@
 package coffee;
 
+import coffee.interfaces.CustomerCommand;
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;

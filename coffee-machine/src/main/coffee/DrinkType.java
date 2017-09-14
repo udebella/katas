@@ -1,5 +1,7 @@
 package coffee;
 
+import coffee.interfaces.CustomerCommand;
+
 import java.util.Optional;
 import java.util.stream.Stream;
 
@@ -37,12 +39,12 @@ public enum DrinkType {
                 sugar(customerCommand.getSugarNumber());
     }
 
-    public String formatErrorMessage(String message) {
+    public static String formatErrorMessage(String message) {
         return MESSAGE_COMMAND + COMMAND_SEPARATOR + message;
     }
 
-    public boolean checkEnoughMoney(CustomerCommand customerCommand) {
-        return this.price > customerCommand.getMoney();
+    public int hasEnoughMoney(CustomerCommand customerCommand) {
+        return price - customerCommand.getMoney() ;
     }
 
     private String extraHot(boolean isExtraHot) {

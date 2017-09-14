@@ -1,4 +1,4 @@
-package coffee;
+package coffee.interfaces;
 
 public class CustomerCommand {
     private final String drinkType;

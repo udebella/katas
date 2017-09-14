@@ -1,5 +1,7 @@
 package coffee;
 
+import coffee.exceptions.InvalidCommandException;
+import coffee.interfaces.CustomerCommand;
 import org.junit.Test;
 
 public class CoffeeMachineErrorTest extends CoffeeMachineTest {
