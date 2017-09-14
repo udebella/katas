@@ -21,18 +21,18 @@ public class TennisGame1 implements TennisGame {
     public String getScore() {
         String score;
 
-        score = formatScore(player1.getScore());
+        score = player1.formatScore();
         score += "-";
-        if (player1.getScore() == player2.getScore()) {
+        if (player1.hasSameScore(player2)) {
             score += "All";
 
-            if(player1.getScore() > 2) {
+            if(player1.hasMore(2)) {
                 score = "Deuce";
             }
         } else {
-            score += formatScore(player2.getScore());
+            score += player2.formatScore();
 
-            if (player1.getScore() >= 4 || player2.getScore() >= 4) {
+            if (player1.hasMore(3) || player2.hasMore(3)) {
                 int minusResult = player1.getScore() - player2.getScore();
                 if (Math.abs(minusResult) == 1) {
                     score = "Advantage ";
@@ -47,19 +47,5 @@ public class TennisGame1 implements TennisGame {
             }
         }
         return score;
-    }
-
-    private String formatScore(int score) {
-        switch (score) {
-            case 0:
-                return "Love";
-            case 1:
-                return "Fifteen";
-            case 2:
-                return "Thirty";
-            case 3:
-                return "Forty";
-        }
-        return null;
     }
 }

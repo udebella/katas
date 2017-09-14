@@ -21,4 +21,26 @@ public class Player {
     public void incrementScore() {
         this.score++;
     }
+
+    public boolean hasSameScore(Player player) {
+        return score == player.score;
+    }
+
+    public boolean hasMore(int score) {
+        return this.score > score;
+    }
+
+    public String formatScore() {
+        switch (score) {
+            case 0:
+                return "Love";
+            case 1:
+                return "Fifteen";
+            case 2:
+                return "Thirty";
+            case 3:
+                return "Forty";
+        }
+        return null;
+    }
 }
