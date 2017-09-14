@@ -4,6 +4,10 @@ import static tennis.Player.endGameMessage;
 
 public class TennisGame1 implements TennisGame {
 
+    private static final String SCORE_SEPARATOR = "-";
+    private static final int END_GAME_LIMIT_SCORE = 3;
+    private static final int DEUCE_LIMIT_SCORE = 2;
+
     private Player player1;
     private Player player2;
 
@@ -24,19 +28,29 @@ public class TennisGame1 implements TennisGame {
         String score;
 
         score = player1.formatScore();
-        score += "-";
+        score += SCORE_SEPARATOR;
         if (player1.hasSameScore(player2)) {
-            score += "All";
-
-            if(player1.hasMore(2)) {
-                score = "Deuce";
-            }
+            score = formatEqualityScore(score);
         } else {
-            score += player2.formatScore();
+            score = formatDistinctScore(score);
+        }
+        return score;
+    }
 
-            if (player1.hasMore(3) || player2.hasMore(3)) {
-                score = endGameMessage(player1, player2);
-            }
+    private String formatDistinctScore(String score) {
+        score += player2.formatScore();
+
+        if (player1.hasMore(END_GAME_LIMIT_SCORE) || player2.hasMore(END_GAME_LIMIT_SCORE)) {
+            score = endGameMessage(player1, player2);
+        }
+        return score;
+    }
+
+    private String formatEqualityScore(String score) {
+        score += "All";
+
+        if(player1.hasMore(DEUCE_LIMIT_SCORE)) {
+            score = "Deuce";
         }
         return score;
     }
