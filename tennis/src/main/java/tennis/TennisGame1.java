@@ -20,53 +20,17 @@ public class TennisGame1 implements TennisGame {
     }
 
     public String getScore() {
-        String score = "";
-        if (m_score1 == m_score2) {
-            switch (m_score1) {
-                case 0:
-                    score = "Love-All";
-                    break;
-                case 1:
-                    score = "Fifteen-All";
-                    break;
-                case 2:
-                    score = "Thirty-All";
-                    break;
-                default:
-                    score = "Deuce";
-                    break;
+        String score;
 
-            }
+        score = formatScore(m_score1);
+        score += "-";
+        if (m_score1 == m_score2) {
+            score += "All";
         } else {
-            switch (m_score1) {
-                case 0:
-                    score += "Love";
-                    break;
-                case 1:
-                    score += "Fifteen";
-                    break;
-                case 2:
-                    score += "Thirty";
-                    break;
-                case 3:
-                    score += "Forty";
-                    break;
-            }
-            score += "-";
-            switch (m_score2) {
-                case 0:
-                    score += "Love";
-                    break;
-                case 1:
-                    score += "Fifteen";
-                    break;
-                case 2:
-                    score += "Thirty";
-                    break;
-                case 3:
-                    score += "Forty";
-                    break;
-            }
+            score += formatScore(m_score2);
+        }
+        if (m_score1 == m_score2 && m_score1 > 2) {
+            score = "Deuce";
         }
         if (m_score1 != m_score2) {
             if (m_score1 >= 4 || m_score2 >= 4) {
@@ -78,5 +42,19 @@ public class TennisGame1 implements TennisGame {
             }
         }
         return score;
+    }
+
+    private String formatScore(int score) {
+        switch (score) {
+            case 0:
+                return "Love";
+            case 1:
+                return "Fifteen";
+            case 2:
+                return "Thirty";
+            case 3:
+                return "Forty";
+        }
+        return null;
     }
 }
