@@ -1,5 +1,7 @@
 package tennis;
 
+import static tennis.Player.endGameMessage;
+
 public class TennisGame1 implements TennisGame {
 
     private Player player1;
@@ -11,7 +13,7 @@ public class TennisGame1 implements TennisGame {
     }
 
     public void wonPoint(String playerName) {
-        if (player1.getName().equals(playerName)) {
+        if (player1.hasName(playerName)) {
             player1.incrementScore();
         } else {
             player2.incrementScore();
@@ -33,19 +35,10 @@ public class TennisGame1 implements TennisGame {
             score += player2.formatScore();
 
             if (player1.hasMore(3) || player2.hasMore(3)) {
-                int minusResult = player1.getScore() - player2.getScore();
-                if (Math.abs(minusResult) == 1) {
-                    score = "Advantage ";
-                } else {
-                    score = "Win for ";
-                }
-                if (minusResult > 0) {
-                    score += player1.getName();
-                } else {
-                    score += player2.getName();
-                }
+                score = endGameMessage(player1, player2);
             }
         }
         return score;
     }
+
 }
