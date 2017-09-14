@@ -31,33 +31,20 @@ public enum DrinkType {
                 .findAny();
     }
 
-    public String drinkMakerFormat(CustomerCommand customerCommand, boolean hasEnoughBeverage) {
+    public String drinkMakerFormat(CustomerCommand customerCommand) {
         if (checkEnoughMoney(customerCommand)) {
-            return customerMessage("Not enough money : " + (this.price - customerCommand.getMoney()) + " is missing");
-        }
-
-        if (hasEnoughBeverage) {
-            return customerMessage(" Not enough beverage");
+            return formatErrorMessage("Not enough money : " + (this.price - customerCommand.getMoney()) + " is missing");
         }
 
         return formatCommand(customerCommand);
     }
 
-    private String customerMessage(String message) {
+    public String formatErrorMessage(String message) {
         return MESSAGE_COMMAND + COMMAND_SEPARATOR + message;
     }
 
     private boolean checkEnoughMoney(CustomerCommand customerCommand) {
         return this.price > customerCommand.getMoney();
-    }
-
-    private boolean checkEnoughBeverage(BeverageQuantityChecker beverageQuantityChecker, EmailNotifier emailNotifier) {
-        final boolean enoughDrink = !beverageQuantityChecker.isEmpty(name);
-        if (!enoughDrink) {
-            emailNotifier.notifyMissingDrink(name);
-            return true;
-        }
-        return false;
     }
 
     private String formatCommand(CustomerCommand customerCommand) {

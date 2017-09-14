@@ -4,6 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -149,6 +150,18 @@ public class CoffeeMachineTest {
 
         coffeeMachine.handle(new CustomerCommand("Chocolate"));
 
-        assertThat(coffeeMachine.handle(new CustomerCommand("Chocolate"))).isEqualTo("M: Not enough beverage");
+        assertThat(coffeeMachine.handle(new CustomerCommand("Chocolate"))).isEqualTo("M:Not enough beverage");
+    }
+
+    @Test
+    public void should_not_add_to_report_when_not_enough_beverage() throws Exception {
+        when(beverageChecker.isEmpty("H"))
+                .thenReturn(true);
+
+        coffeeMachine.handle(new CustomerCommand("Chocolate"));
+
+        coffeeMachine.report(printer);
+
+        verify(printer).print("Chocolate | 0 | 0");
     }
 }
