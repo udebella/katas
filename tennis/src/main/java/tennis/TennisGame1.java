@@ -41,9 +41,9 @@ public class TennisGame1 implements TennisGame {
                     score = "Win for ";
                 }
                 if (minusResult > 0) {
-                    score += "player1";
+                    score += player1Name;
                 } else {
-                    score += "player2";
+                    score += player2Name;
                 }
             }
         }
