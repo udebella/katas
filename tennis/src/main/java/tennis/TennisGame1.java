@@ -25,20 +25,24 @@ public class TennisGame1 implements TennisGame {
     }
 
     public String getScore() {
-        String score;
-
-        score = player1.formatScore();
-        score += SCORE_SEPARATOR;
         if (player1.hasSameScore(player2)) {
-            score = formatEqualityScore(score);
+            return formatEqualityScore();
         } else {
-            score = formatDistinctScore(score);
+            return formatDistinctScore();
+        }
+    }
+
+    private String formatEqualityScore() {
+        String score = formatScore(player1.formatScore(), "All");
+
+        if(player1.hasMore(DEUCE_LIMIT_SCORE)) {
+            score = "Deuce";
         }
         return score;
     }
 
-    private String formatDistinctScore(String score) {
-        score += player2.formatScore();
+    private String formatDistinctScore() {
+        String score = formatScore(player1.formatScore(), player2.formatScore());
 
         if (player1.hasMore(END_GAME_LIMIT_SCORE) || player2.hasMore(END_GAME_LIMIT_SCORE)) {
             score = endGameMessage(player1, player2);
@@ -46,13 +50,8 @@ public class TennisGame1 implements TennisGame {
         return score;
     }
 
-    private String formatEqualityScore(String score) {
-        score += "All";
-
-        if(player1.hasMore(DEUCE_LIMIT_SCORE)) {
-            score = "Deuce";
-        }
-        return score;
+    private String formatScore(String scorePlayer1, String scorePlayer2) {
+        return scorePlayer1 + SCORE_SEPARATOR + scorePlayer2;
     }
 
 }
