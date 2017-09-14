@@ -16,22 +16,19 @@ public class CoffeeMachine {
         this.emailNotifier = emailNotifier;
     }
 
-    public String handle(CustomerCommand customerCommand) {
-        final Optional<DrinkType> drinkTypeOptional = DrinkType.findByName(customerCommand.getDrinkType());
+    public String handle(CustomerCommand customerCommand) throws InvalidCommandException {
+        final DrinkType drinkType = DrinkType.findByName(customerCommand.getDrinkType())
+                .orElseThrow(InvalidCommandException::new);
 
-        if (drinkTypeOptional.isPresent()) {
-            DrinkType drinkType = drinkTypeOptional.get();
-            if (beverageQuantityChecker.isEmpty(drinkType.getCommand())) {
-                emailNotifier.notifyMissingDrink(drinkType.getCommand());
-                return drinkType.formatErrorMessage("Not enough beverage");
-            }
-            if (drinkType.checkEnoughMoney(customerCommand)) {
-                return drinkType.formatErrorMessage("Not enough money : " + (drinkType.getPrice() - customerCommand.getMoney()) + " is missing");
-            }
-            addSoldReport(drinkType);
-            return drinkType.drinkMakerFormat(customerCommand);
+        if (beverageQuantityChecker.isEmpty(drinkType.getCommand())) {
+            emailNotifier.notifyMissingDrink(drinkType.getCommand());
+            return drinkType.formatErrorMessage("Not enough beverage");
         }
-        return null;
+        if (drinkType.checkEnoughMoney(customerCommand)) {
+            return drinkType.formatErrorMessage("Not enough money : " + (drinkType.getPrice() - customerCommand.getMoney()) + " is missing");
+        }
+        addSoldReport(drinkType);
+        return drinkType.drinkMakerFormat(customerCommand);
     }
 
     private void addSoldReport(DrinkType dt) {
