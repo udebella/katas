@@ -20,12 +20,12 @@ public class CoffeeMachine {
         final Optional<DrinkType> drinkType = DrinkType.findByName(customerCommand.getDrinkType());
         drinkType.ifPresent(this::addSoldReport);
         drinkType.ifPresent(drinkType1 -> {
-            if (beverageQuantityChecker.isEmpty(customerCommand.getDrinkType())) {
-                emailNotifier.notifyMissingDrink(customerCommand.getDrinkType());
+            if (beverageQuantityChecker.isEmpty(drinkType1.getCommand())) {
+                emailNotifier.notifyMissingDrink(drinkType1.getCommand());
             }
         });
         return drinkType
-                .map(dt -> dt.drinkMakerFormat(customerCommand, beverageQuantityChecker.isEmpty(customerCommand.getDrinkType())))
+                .map(dt -> dt.drinkMakerFormat(customerCommand, beverageQuantityChecker.isEmpty(dt.getCommand())))
                 .orElseThrow(NoSuchElementException::new);
     }
 

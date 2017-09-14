@@ -94,4 +94,8 @@ public enum DrinkType {
                 + numberSold + LINE_REPORT_SEPARATOR
                 + numberSold * price;
     }
+
+    public String getCommand() {
+        return command;
+    }
 }

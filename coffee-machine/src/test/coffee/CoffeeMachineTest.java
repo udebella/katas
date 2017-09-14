@@ -134,17 +134,17 @@ public class CoffeeMachineTest {
 
     @Test
     public void should_send_an_email_when_not_enough_beverage() throws Exception {
-        when(beverageChecker.isEmpty("Chocolate"))
+        when(beverageChecker.isEmpty("H"))
                 .thenReturn(true);
 
         coffeeMachine.handle(new CustomerCommand("Chocolate"));
 
-        verify(emailNotifier).notifyMissingDrink("Chocolate");
+        verify(emailNotifier).notifyMissingDrink("H");
     }
 
     @Test
     public void should_send_a_message_to_user_when_not_enough_beverage() throws Exception {
-        when(beverageChecker.isEmpty("Chocolate"))
+        when(beverageChecker.isEmpty("H"))
                 .thenReturn(true);
 
         coffeeMachine.handle(new CustomerCommand("Chocolate"));
