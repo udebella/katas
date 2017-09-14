@@ -26,19 +26,25 @@ public class TennisGame1 implements TennisGame {
         score += "-";
         if (m_score1 == m_score2) {
             score += "All";
+
+            if(m_score1 > 2) {
+                score = "Deuce";
+            }
         } else {
             score += formatScore(m_score2);
-        }
-        if (m_score1 == m_score2 && m_score1 > 2) {
-            score = "Deuce";
-        }
-        if (m_score1 != m_score2) {
+
             if (m_score1 >= 4 || m_score2 >= 4) {
                 int minusResult = m_score1 - m_score2;
-                if (minusResult == 1) score = "Advantage player1";
-                else if (minusResult == -1) score = "Advantage player2";
-                else if (minusResult >= 2) score = "Win for player1";
-                else score = "Win for player2";
+                if (Math.abs(minusResult) == 1) {
+                    score = "Advantage ";
+                } else {
+                    score = "Win for ";
+                }
+                if (minusResult > 0) {
+                    score += "player1";
+                } else {
+                    score += "player2";
+                }
             }
         }
         return score;
