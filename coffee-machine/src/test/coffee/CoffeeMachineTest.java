@@ -164,4 +164,13 @@ public class CoffeeMachineTest {
 
         verify(printer).print("Chocolate | 0 | 0");
     }
+
+    @Test
+    public void should_not_add_to_report_when_not_enough_money() throws Exception {
+        coffeeMachine.handle(new CustomerCommand("Chocolate", 0, false, 10));
+
+        coffeeMachine.report(printer);
+
+        verify(printer).print("Chocolate | 0 | 0");
+    }
 }

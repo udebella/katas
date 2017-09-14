@@ -32,25 +32,17 @@ public enum DrinkType {
     }
 
     public String drinkMakerFormat(CustomerCommand customerCommand) {
-        if (checkEnoughMoney(customerCommand)) {
-            return formatErrorMessage("Not enough money : " + (this.price - customerCommand.getMoney()) + " is missing");
-        }
-
-        return formatCommand(customerCommand);
+        return command +
+                extraHot(customerCommand.isExtraHot()) +
+                sugar(customerCommand.getSugarNumber());
     }
 
     public String formatErrorMessage(String message) {
         return MESSAGE_COMMAND + COMMAND_SEPARATOR + message;
     }
 
-    private boolean checkEnoughMoney(CustomerCommand customerCommand) {
+    public boolean checkEnoughMoney(CustomerCommand customerCommand) {
         return this.price > customerCommand.getMoney();
-    }
-
-    private String formatCommand(CustomerCommand customerCommand) {
-        return command +
-                extraHot(customerCommand.isExtraHot()) +
-                sugar(customerCommand.getSugarNumber());
     }
 
     private String extraHot(boolean isExtraHot) {
@@ -84,5 +76,9 @@ public enum DrinkType {
 
     public String getCommand() {
         return command;
+    }
+
+    public int getPrice() {
+        return price;
     }
 }

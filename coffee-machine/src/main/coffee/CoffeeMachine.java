@@ -25,6 +25,9 @@ public class CoffeeMachine {
                 emailNotifier.notifyMissingDrink(drinkType.getCommand());
                 return drinkType.formatErrorMessage("Not enough beverage");
             }
+            if (drinkType.checkEnoughMoney(customerCommand)) {
+                return drinkType.formatErrorMessage("Not enough money : " + (drinkType.getPrice() - customerCommand.getMoney()) + " is missing");
+            }
             addSoldReport(drinkType);
             return drinkType.drinkMakerFormat(customerCommand);
         }
