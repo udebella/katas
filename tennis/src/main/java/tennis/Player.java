@@ -18,11 +18,11 @@ public class Player {
         this.score++;
     }
 
-    public boolean hasSameScore(Player player) {
+    public boolean hasSameScoreThan(Player player) {
         return score == player.score;
     }
 
-    public boolean hasMore(int score) {
+    public boolean isScoreHigherThan(int score) {
         return this.score > score;
     }
 
@@ -41,26 +41,21 @@ public class Player {
     }
 
     public static String endGameMessage(Player player1, Player player2) {
-        String score;
-        int minusResult = player1.score - player2.score;
-        if (Math.abs(minusResult) == 1) {
-            score = maxScore(player1, player2).advantage();
+        final Player winner = maxScore(player1, player2);
+        if (scoreGapLessThanTwo(player1, player2)) {
+            return "Advantage " + winner.name;
         } else {
-            score = maxScore(player1, player2).win();
+            return "Win for " + winner.name;
         }
-        return score;
     }
 
-    private String advantage() {
-        return "Advantage " + name;
-    }
-
-    private String win() {
-        return "Win for " + name;
+    private static boolean scoreGapLessThanTwo(Player player1, Player player2) {
+        int scoreGap = player1.score - player2.score;
+        return Math.abs(scoreGap) < 2;
     }
 
     private static Player maxScore(Player player1, Player player2) {
-        if (player1.score - player2.score > 0) {
+        if (player1.isScoreHigherThan(player2.score)) {
             return player1;
         } else {
             return player2;

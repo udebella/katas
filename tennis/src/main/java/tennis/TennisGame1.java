@@ -25,7 +25,7 @@ public class TennisGame1 implements TennisGame {
     }
 
     public String getScore() {
-        if (player1.hasSameScore(player2)) {
+        if (player1.hasSameScoreThan(player2)) {
             return formatEqualityScore();
         } else {
             return formatDistinctScore();
@@ -35,7 +35,7 @@ public class TennisGame1 implements TennisGame {
     private String formatEqualityScore() {
         String score = formatScore(player1.formatScore(), "All");
 
-        if(player1.hasMore(DEUCE_LIMIT_SCORE)) {
+        if(player1.isScoreHigherThan(DEUCE_LIMIT_SCORE)) {
             score = "Deuce";
         }
         return score;
@@ -44,7 +44,7 @@ public class TennisGame1 implements TennisGame {
     private String formatDistinctScore() {
         String score = formatScore(player1.formatScore(), player2.formatScore());
 
-        if (player1.hasMore(END_GAME_LIMIT_SCORE) || player2.hasMore(END_GAME_LIMIT_SCORE)) {
+        if (player1.isScoreHigherThan(END_GAME_LIMIT_SCORE) || player2.isScoreHigherThan(END_GAME_LIMIT_SCORE)) {
             score = endGameMessage(player1, player2);
         }
         return score;
