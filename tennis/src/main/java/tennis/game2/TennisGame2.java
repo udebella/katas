@@ -3,11 +3,9 @@ package tennis.game2;
 import tennis.TennisGame;
 
 public class TennisGame2 implements TennisGame {
-    public int P1point = 0;
-    public int P2point = 0;
+    private int P1point = 0;
+    private int P2point = 0;
 
-    public String P1res = "";
-    public String P2res = "";
     private String player1Name;
     private String player2Name;
 
@@ -37,11 +35,11 @@ public class TennisGame2 implements TennisGame {
 
     private String formatEarlyGameScore() {
         String score;
-        P1res = pointToScoreName(P1point);
-        P2res = pointToScoreName(P2point);
-        score = P1res + "-" + P2res;
+        String p1res = pointToScoreName(P1point);
+        String p2res = pointToScoreName(P2point);
+        score = p1res + "-" + p2res;
         if (P1point == P2point) {
-            score = P1res + "-All";
+            score = p1res + "-All";
         }
         return score;
     }
