@@ -62,18 +62,11 @@ public class TennisGame2 implements TennisGame {
         }
     }
 
-    public void incrementFirstPlayerScore() {
-        P1point++;
-    }
-
-    public void incrementSecondPlayerScore() {
-        P2point++;
-    }
-
     public void wonPoint(String player) {
-        if (player1Name.equals(player))
-            incrementFirstPlayerScore();
-        else
-            incrementSecondPlayerScore();
+        if (player1Name.equals(player)) {
+            P1point++;
+        } else {
+            P2point++;
+        }
     }
 }
