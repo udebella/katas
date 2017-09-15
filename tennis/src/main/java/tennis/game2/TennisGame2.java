@@ -18,14 +18,8 @@ public class TennisGame2 implements TennisGame {
 
     public String getScore() {
         String score = "";
-
         if (P1point < 4 || P2point < 4) {
-            P1res = formatScore(P1point);
-            P2res = formatScore(P2point);
-            score = P1res + "-" + P2res;
-            if (P1point == P2point) {
-                score = P1res + "-All";
-            }
+            score = formatEarlyGameScore();
         }
         if (P1point >= 3 && P2point >= 3) {
             score = "Advantage " + winner();
@@ -33,11 +27,21 @@ public class TennisGame2 implements TennisGame {
                 score = "Deuce";
             }
         }
-
         if (P1point >= 4 || P2point >= 4) {
             if (Math.abs(P1point - P2point) >= 2) {
                 score = "Win for " + winner();
             }
+        }
+        return score;
+    }
+
+    private String formatEarlyGameScore() {
+        String score;
+        P1res = pointToScoreName(P1point);
+        P2res = pointToScoreName(P2point);
+        score = P1res + "-" + P2res;
+        if (P1point == P2point) {
+            score = P1res + "-All";
         }
         return score;
     }
@@ -49,7 +53,7 @@ public class TennisGame2 implements TennisGame {
         return player2Name;
     }
 
-    private String formatScore(int points) {
+    private String pointToScoreName(int points) {
         switch (points) {
             case 0:
                 return "Love";
