@@ -3,7 +3,7 @@ package tennis.game2;
 import tennis.TennisGame;
 
 public class TennisGame2 implements TennisGame {
-    public static final String SCORE_SEPARATOR = "-";
+    private static final String SCORE_SEPARATOR = "-";
     private int P1point = 0;
     private int P2point = 0;
 
@@ -16,25 +16,39 @@ public class TennisGame2 implements TennisGame {
     }
 
     public String getScore() {
-        String score = "";
-        final String firstPlayerScore = pointToScoreName(P1point);
-        if (P1point < 4 || P2point < 4) {
-            score = firstPlayerScore + SCORE_SEPARATOR;
-            score += pointToScoreName(P2point);
+        if (isEquality()) {
+            return formatEqualityScore();
         }
-        if (P1point >= 3 && P2point >= 3) {
-            score = "Advantage " + winner();
+        if (isAdvantage()) {
+            return "Advantage " + winner();
         }
         if (isWin()) {
-            score = "Win for " + winner();
+            return "Win for " + winner();
         }
-        if (P1point == P2point) {
-            score = "Deuce";
-            if (P1point < 3) {
-                score = firstPlayerScore + SCORE_SEPARATOR + "All";
-            }
+        return printScore(pointToScoreName(P2point));
+    }
+
+    private String formatEqualityScore() {
+        if (P1point < 3) {
+            return printScore("All");
         }
-        return score;
+        return "Deuce";
+    }
+
+    private boolean isAdvantage() {
+        return P1point >= 3 && P2point >= 3 && differenceOfOnePoint();
+    }
+
+    private boolean differenceOfOnePoint() {
+        return Math.abs(P1point - P2point) == 1;
+    }
+
+    private String printScore(String secondPart) {
+        return pointToScoreName(P1point) + SCORE_SEPARATOR + secondPart;
+    }
+
+    private boolean isEquality() {
+        return P1point == P2point;
     }
 
     private String pointToScoreName(int points) {
@@ -58,14 +72,14 @@ public class TennisGame2 implements TennisGame {
     }
 
     private boolean isWin() {
-        return isPotentialWin() && atLeastTwoPointDifference();
+        return isPotentialWin() && atLeastDifferenceOfTwo();
     }
 
     private boolean isPotentialWin() {
         return P1point > 3 || P2point > 3;
     }
 
-    private boolean atLeastTwoPointDifference() {
+    private boolean atLeastDifferenceOfTwo() {
         return Math.abs(P1point - P2point) >= 2;
     }
 
