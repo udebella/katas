@@ -43,14 +43,6 @@ public class TennisGame2 implements TennisGame
         if (P2point==3) {
             P2res = "Forty";
         }
-        if (P1point > 0 && P2point==0)
-        {
-            score = P1res + "-" + P2res;
-        }
-        if (P2point > 0 && P1point==0)
-        {
-            score = P1res + "-" + P2res;
-        }
 
         if (P1point>P2point && P1point < 4)
         {
