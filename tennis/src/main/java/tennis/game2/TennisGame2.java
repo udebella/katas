@@ -21,14 +21,11 @@ public class TennisGame2 implements TennisGame {
         P1res = formatScore(P1point);
         P2res = formatScore(P2point);
 
-        if (P1point > P2point && P1point < 4) {
+        if (P1point < 4 || P2point < 4) {
             score = P1res + "-" + P2res;
-        }
-        if (P2point > P1point && P2point < 4) {
-            score = P1res + "-" + P2res;
-        }
-        if (P1point == P2point && P1point < 4) {
-            score = P1res + "-All";
+            if (P1point == P2point) {
+                score = P1res + "-All";
+            }
         }
         if (P1point == P2point && P1point >= 3)
             score = "Deuce";
