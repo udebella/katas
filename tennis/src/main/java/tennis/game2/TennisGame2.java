@@ -28,10 +28,7 @@ public class TennisGame2 implements TennisGame {
             }
         }
         if (P1point >= 3 && P2point >= 3) {
-            score = "Advantage player2";
-            if (P1point > P2point) {
-                score = "Advantage player1";
-            }
+            score = "Advantage " + winner();
             if (P1point == P2point) {
                 score = "Deuce";
             }
@@ -44,6 +41,13 @@ public class TennisGame2 implements TennisGame {
             score = "Win for player2";
         }
         return score;
+    }
+
+    private String winner() {
+        if (P1point > P2point) {
+            return player1Name;
+        }
+        return player2Name;
     }
 
     private String formatScore(int points) {
