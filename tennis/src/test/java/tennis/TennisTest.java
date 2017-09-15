@@ -5,6 +5,7 @@ import junitparams.Parameters;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import tennis.game1.TennisGame1;
+import tennis.game2.TennisGame2;
 
 import java.util.Arrays;
 import java.util.Collection;
