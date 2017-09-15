@@ -19,18 +19,7 @@ public class TennisGame2 implements TennisGame {
     public String getScore() {
         String score = "";
         P1res = formatScore(P1point);
-        if (P2point == 0) {
-            P2res = "Love";
-        }
-        if (P2point == 1) {
-            P2res = "Fifteen";
-        }
-        if (P2point == 2) {
-            P2res = "Thirty";
-        }
-        if (P2point == 3) {
-            P2res = "Forty";
-        }
+        P2res = formatScore(P2point);
 
         if (P1point > P2point && P1point < 4) {
             score = P1res + "-" + P2res;
