@@ -71,7 +71,7 @@ public class TennisGame2 implements TennisGame {
     }
 
     public void wonPoint(String player) {
-        if ("player1".equals(player))
+        if (player1Name.equals(player))
             incrementFirstPlayerScore();
         else
             incrementSecondPlayerScore();
