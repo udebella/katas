@@ -1,6 +1,9 @@
-package tennis;
+package tennis.game1;
 
-import static tennis.Player.endGameMessage;
+import tennis.TennisGame;
+import tennis.game1.Player;
+
+import static tennis.game1.Player.endGameMessage;
 
 public class TennisGame1 implements TennisGame {
 

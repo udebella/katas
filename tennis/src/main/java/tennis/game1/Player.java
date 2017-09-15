@@ -1,4 +1,4 @@
-package tennis;
+package tennis.game1;
 
 public class Player {
 
