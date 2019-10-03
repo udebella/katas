@@ -58,4 +58,13 @@ public class CoffeeMachineTest {
 
         verify(drinkMaker).process("M:Missing 1 cents");
     }
+
+    @Test
+    public void should_allow_to_ask_extra_hot_drinks() {
+        final Order order = Order.of(new SugarDrink(new ExtraHot(Drinks.TEA), 2), Amount.of(100));
+
+        coffeeMachine.make(order);
+
+        verify(drinkMaker).process("Th:2:0");
+    }
 }
