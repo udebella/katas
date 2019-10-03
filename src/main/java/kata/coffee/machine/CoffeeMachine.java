@@ -2,6 +2,8 @@ package kata.coffee.machine;
 
 import kata.coffee.machine.reporting.Repository;
 
+import java.util.List;
+
 public class CoffeeMachine {
     private final DrinkMaker drinkMaker;
     private final Repository repository;
@@ -16,15 +18,17 @@ public class CoffeeMachine {
     }
 
     public void make(Order order) {
-        if (beverageQuantityChecker.isEmpty("water")) {
-            emailNotifier.notifyMissingDrink("water");
-            drinkMaker.process("M:Missing water, notification sent");
-        } else if (beverageQuantityChecker.isEmpty("milk")) {
-            emailNotifier.notifyMissingDrink("milk");
-            drinkMaker.process("M:Missing milk, notification sent");
-        } else {
+        final List<String> missingBeveragesCodes = Beverages.missingBeverages(beverageQuantityChecker);
+
+        if (missingBeveragesCodes.isEmpty()) {
             drinkMaker.process(order.format());
             repository.track(order);
         }
+
+        missingBeveragesCodes
+                .stream()
+                .peek(emailNotifier::notifyMissingDrink)
+                .map(code -> "M:Missing " + code + ", notification sent")
+                .forEach(drinkMaker::process);
     }
 }
