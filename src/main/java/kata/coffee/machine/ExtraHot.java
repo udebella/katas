@@ -16,6 +16,6 @@ public class ExtraHot implements Drink {
 
     @Override
     public Optional<Amount> isMoreExpensiveThan(Amount amount) {
-        return Optional.empty();
+        return drink.isMoreExpensiveThan(amount);
     }
 }

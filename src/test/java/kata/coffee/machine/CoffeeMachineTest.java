@@ -67,4 +67,13 @@ public class CoffeeMachineTest {
 
         verify(drinkMaker).process("Th:2:0");
     }
+
+    @Test
+    public void should_properly_check_price_for_extra_hot_drinks() {
+        final Order order = Order.of(new SugarDrink(new ExtraHot(Drinks.TEA), 2), Amount.of(0));
+
+        coffeeMachine.make(order);
+
+        verify(drinkMaker).process("M:Missing 40 cents");
+    }
 }
