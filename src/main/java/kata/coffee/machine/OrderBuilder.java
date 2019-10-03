@@ -38,6 +38,6 @@ public final class OrderBuilder {
         if (isExtraHot) {
             d = new ExtraHot(d);
         }
-        return new OrderToRename(new SugarDrink(d, sugarNumber), amount);
+        return new Order(new SugarDrink(d, sugarNumber), amount);
     }
 }

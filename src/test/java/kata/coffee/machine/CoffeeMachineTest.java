@@ -6,6 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
@@ -14,11 +15,13 @@ public class CoffeeMachineTest {
 
     private DrinkMaker drinkMaker;
     private CoffeeMachine coffeeMachine;
+    private Repository repository;
 
     @Before
     public void setUp() {
+        repository = new Repository();
         drinkMaker = mock(DrinkMaker.class);
-        coffeeMachine = new CoffeeMachine(drinkMaker);
+        coffeeMachine = new CoffeeMachine(drinkMaker, repository);
     }
 
     @Test
@@ -98,5 +101,20 @@ public class CoffeeMachineTest {
         coffeeMachine.make(order);
 
         verify(drinkMaker).process("M:Missing 40 cents");
+    }
+
+    @Test
+    public void should_allow_to_track_every_sold_drink() {
+        final Console console = mock(Console.class);
+        final Order order = OrderBuilder.newBuilder()
+                .withDrink(Drinks.TEA)
+                .withSugar(2)
+                .extraHot()
+                .build();
+
+        coffeeMachine.make(order);
+        repository.printReporting(console);
+
+        verify(console).print("TEA 1");
     }
 }

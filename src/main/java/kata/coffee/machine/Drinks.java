@@ -22,4 +22,9 @@ public enum Drinks implements Drink {
     public Optional<Amount> isMoreExpensiveThan(Amount amount) {
         return amount.isEnoughFor(price);
     }
+
+    @Override
+    public void register(Repository repository) {
+        repository.track(this);
+    }
 }

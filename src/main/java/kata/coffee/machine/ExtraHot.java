@@ -18,4 +18,9 @@ public class ExtraHot implements Drink {
     public Optional<Amount> isMoreExpensiveThan(Amount amount) {
         return drink.isMoreExpensiveThan(amount);
     }
+
+    @Override
+    public void register(Repository repository) {
+        drink.register(repository);
+    }
 }

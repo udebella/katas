@@ -17,6 +17,11 @@ public class SugarDrink implements Drink {
     }
 
     @Override
+    public void register(Repository repository) {
+        drink.register(repository);
+    }
+
+    @Override
     public String format() {
         if (sugarNumber == 0) {
             return drink.format() + "::";

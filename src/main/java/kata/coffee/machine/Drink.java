@@ -6,4 +6,6 @@ public interface Drink {
     String format();
 
     Optional<Amount> isMoreExpensiveThan(Amount amount);
+
+    void register(Repository repository);
 }
