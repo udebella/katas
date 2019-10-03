@@ -2,7 +2,7 @@ package kata.coffee.machine;
 
 import java.util.Optional;
 
-public enum Drink {
+public enum Drink implements CommandMaker {
     COFFEE("C", Amount.of(60)),
     TEA("T", Amount.of(40)),
     CHOCOLATE("H", Amount.of(50));
