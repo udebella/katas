@@ -3,7 +3,6 @@ package kata.coffee.machine;
 import java.util.Optional;
 
 public class Amount {
-    public static final Amount ZERO = new Amount(0);
     private final int amount;
 
     private Amount(int amount) {
@@ -18,13 +17,10 @@ public class Amount {
     }
 
     public static Amount of(int amount) {
-        if (amount < 0) {
-            return ZERO;
-        }
         return new Amount(amount);
     }
 
     public String format() {
-        return String.valueOf(amount) + " cents";
+        return amount + " cents";
     }
 }
