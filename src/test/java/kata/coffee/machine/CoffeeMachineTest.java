@@ -24,7 +24,7 @@ public class CoffeeMachineTest {
     @Test
     @Parameters({"TEA, T:1:0", "COFFEE, C:1:0", "CHOCOLATE, H:1:0", "ORANGE_JUICE, O:1:0", })
     public void should_send_message_to_drink_maker(Drinks drinks, String command) {
-        final Order order = Order.newBuilder()
+        final Order order = OrderBuilder.newBuilder()
                 .withDrink(drinks)
                 .withSugar(1)
                 .withAmount(100)
@@ -37,7 +37,7 @@ public class CoffeeMachineTest {
 
     @Test
     public void should_allow_to_order_two_sugar() {
-        final Order order = Order.newBuilder()
+        final Order order = OrderBuilder.newBuilder()
                 .withDrink(Drinks.CHOCOLATE)
                 .withSugar(2)
                 .withAmount(100)
@@ -50,7 +50,7 @@ public class CoffeeMachineTest {
 
     @Test
     public void should_not_ask_for_a_stick_when_no_sugar_asked() {
-        final Order order = Order.newBuilder()
+        final Order order = OrderBuilder.newBuilder()
                 .withDrink(Drinks.CHOCOLATE)
                 .withAmount(100)
                 .build();
@@ -63,7 +63,7 @@ public class CoffeeMachineTest {
     @Test
     @Parameters({"TEA, 39", "COFFEE, 59", "CHOCOLATE, 49", "ORANGE_JUICE, 59", })
     public void should_refuses_order_if_insufficient_amount(Drinks drink, int amount) {
-        final Order order = Order.newBuilder()
+        final Order order = OrderBuilder.newBuilder()
                 .withDrink(drink)
                 .withAmount(amount)
                 .build();
@@ -75,7 +75,7 @@ public class CoffeeMachineTest {
 
     @Test
     public void should_allow_to_ask_extra_hot_drinks() {
-        final Order order = Order.newBuilder()
+        final Order order = OrderBuilder.newBuilder()
                 .withDrink(Drinks.TEA)
                 .extraHot()
                 .withSugar(2)
@@ -89,7 +89,7 @@ public class CoffeeMachineTest {
 
     @Test
     public void should_properly_check_price_for_extra_hot_drinks() {
-        final Order order = Order.newBuilder()
+        final Order order = OrderBuilder.newBuilder()
                 .withDrink(Drinks.TEA)
                 .withSugar(2)
                 .extraHot()

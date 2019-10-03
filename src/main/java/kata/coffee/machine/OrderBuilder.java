@@ -6,7 +6,11 @@ public final class OrderBuilder {
     private Drinks drink;
     private Amount amount = Amount.of(0);
 
-    OrderBuilder() {
+    private OrderBuilder() {
+    }
+
+    public static OrderBuilder newBuilder() {
+        return new OrderBuilder();
     }
 
     public OrderBuilder withDrink(Drinks drink) {
@@ -34,6 +38,6 @@ public final class OrderBuilder {
         if (isExtraHot) {
             d = new ExtraHot(d);
         }
-        return new Order(new SugarDrink(d, sugarNumber), amount);
+        return new OrderToRename(new SugarDrink(d, sugarNumber), amount);
     }
 }
