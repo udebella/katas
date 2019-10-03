@@ -16,7 +16,9 @@ public class Order {
     }
 
     public void register(Repository repository) {
-        drink.register(repository);
+        if (!amount.isEnoughFor(drink).isPresent()) {
+            drink.register(repository);
+        }
     }
 
 }

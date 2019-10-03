@@ -7,8 +7,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.*;
 
 @RunWith(JUnitParamsRunner.class)
 public class CoffeeMachineTest {
@@ -117,5 +116,20 @@ public class CoffeeMachineTest {
         repository.printReporting(console);
 
         verify(console).print("TEA: 40 cents");
+    }
+
+    @Test
+    public void should_not_track_refused_order() {
+        final Console console = mock(Console.class);
+        final Order order = OrderBuilder.newBuilder()
+                .withDrink(Drinks.TEA)
+                .withSugar(2)
+                .extraHot()
+                .build();
+
+        coffeeMachine.make(order);
+        repository.printReporting(console);
+
+        verifyZeroInteractions(console);
     }
 }
