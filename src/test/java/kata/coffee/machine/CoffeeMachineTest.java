@@ -22,7 +22,7 @@ public class CoffeeMachineTest {
     }
 
     @Test
-    @Parameters({"TEA, T:1:0", "COFFEE, C:1:0", "CHOCOLATE, H:1:0", })
+    @Parameters({"TEA, T:1:0", "COFFEE, C:1:0", "CHOCOLATE, H:1:0", "ORANGE_JUICE, O:1:0", })
     public void should_send_message_to_drink_maker(Drinks drinks, String command) {
         final Order order = Order.of(new SugarDrink(drinks, 1), Amount.of(100));
 
