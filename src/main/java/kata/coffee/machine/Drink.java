@@ -1,13 +1,15 @@
 package kata.coffee.machine;
 
-public enum Drink {
-    COFFEE("C", 60),
-    TEA("T", 40),
-    CHOCOLATE("H", 50);
-    private final String code;
-    private final int price;
+import java.util.Optional;
 
-    Drink(String code, int price) {
+public enum Drink {
+    COFFEE("C", Amount.of(60)),
+    TEA("T", Amount.of(40)),
+    CHOCOLATE("H", Amount.of(50));
+    private final String code;
+    private final Amount price;
+
+    Drink(String code, Amount price) {
         this.code = code;
         this.price = price;
     }
@@ -16,7 +18,7 @@ public enum Drink {
         return code;
     }
 
-    public int getPrice() {
-        return price;
+    public Optional<Amount> isMoreExpensiveThan(Amount amount) {
+        return amount.isEnoughFor(price);
     }
 }

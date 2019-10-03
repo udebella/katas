@@ -3,17 +3,21 @@ package kata.coffee.machine;
 import java.util.Optional;
 
 public class Amount {
-    private final int amount;
+    private final int value;
 
-    private Amount(int amount) {
-        this.amount = amount;
+    private Amount(int value) {
+        this.value = value;
     }
 
     public Optional<Amount> isEnoughFor(Drink drink) {
-        if (amount - drink.getPrice() > 0) {
+        return drink.isMoreExpensiveThan(this);
+    }
+
+    public Optional<Amount> isEnoughFor(Amount amount) {
+        if (value - amount.value > 0) {
             return Optional.empty();
         }
-        return Optional.of(Amount.of(drink.getPrice() - amount));
+        return Optional.of(Amount.of(amount.value - value));
     }
 
     public static Amount of(int amount) {
@@ -21,6 +25,6 @@ public class Amount {
     }
 
     public String format() {
-        return amount + " cents";
+        return value + " cents";
     }
 }
