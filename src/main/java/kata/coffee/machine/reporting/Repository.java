@@ -19,8 +19,12 @@ public class Repository {
     }
 
     public void printReporting(Console console) {
-        for (Map.Entry<Drinks, Amount> entry : soldDrinks.entrySet()) {
-            console.print(entry.getKey() + ": " + entry.getValue().format());
-        }
+        soldDrinks.entrySet().stream()
+                .map(this::format)
+                .forEach(console::print);
+    }
+
+    private String format(Map.Entry<Drinks, Amount> entry) {
+        return entry.getKey() + ": " + entry.getValue().format();
     }
 }
