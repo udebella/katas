@@ -5,14 +5,23 @@ import kata.coffee.machine.reporting.Repository;
 public class CoffeeMachine {
     private final DrinkMaker drinkMaker;
     private final Repository repository;
+    private final EmailNotifier emailNotifier;
+    private final BeverageQuantityChecker beverageQuantityChecker;
 
-    public CoffeeMachine(DrinkMaker drinkMaker, Repository repository) {
+    public CoffeeMachine(DrinkMaker drinkMaker, Repository repository, EmailNotifier emailNotifier, BeverageQuantityChecker beverageQuantityChecker) {
         this.drinkMaker = drinkMaker;
         this.repository = repository;
+        this.emailNotifier = emailNotifier;
+        this.beverageQuantityChecker = beverageQuantityChecker;
     }
 
     public void make(Order order) {
-        drinkMaker.process(order.format());
-        repository.track(order);
+        if (beverageQuantityChecker.isEmpty("water")) {
+            emailNotifier.notifyMissingDrink("water");
+            drinkMaker.process("M:Missing water, notification sent");
+        } else {
+            drinkMaker.process(order.format());
+            repository.track(order);
+        }
     }
 }

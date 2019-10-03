@@ -18,12 +18,16 @@ public class CoffeeMachineTest {
     private DrinkMaker drinkMaker;
     private CoffeeMachine coffeeMachine;
     private Repository repository;
+    private EmailNotifier emailNotifier;
+    private BeverageQuantityChecker beverageQuantityChecker;
 
     @Before
     public void setUp() {
         repository = new Repository();
         drinkMaker = mock(DrinkMaker.class);
-        coffeeMachine = new CoffeeMachine(drinkMaker, repository);
+        emailNotifier = mock(EmailNotifier.class);
+        beverageQuantityChecker = mock(BeverageQuantityChecker.class);
+        coffeeMachine = new CoffeeMachine(drinkMaker, repository, emailNotifier, beverageQuantityChecker);
     }
 
     @Test
@@ -134,5 +138,20 @@ public class CoffeeMachineTest {
         repository.printReporting(console);
 
         verifyZeroInteractions(console);
+    }
+
+    @Test
+    public void should_send_an_email_when_there_is_a_shortage_in_water() {
+        when(beverageQuantityChecker.isEmpty("water")).thenReturn(true);
+        final Order order = OrderBuilder.newBuilder()
+                .withDrink(Drinks.TEA)
+                .withSugar(2)
+                .extraHot()
+                .build();
+
+        coffeeMachine.make(order);
+
+        verify(emailNotifier).notifyMissingDrink("water");
+        verify(drinkMaker).process("M:Missing water, notification sent");
     }
 }
