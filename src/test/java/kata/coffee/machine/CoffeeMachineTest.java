@@ -15,10 +15,21 @@ public class CoffeeMachineTest {
     public void should_send_message_to_drink_maker(Drink drink, String command) {
         final DrinkMaker drinkMaker = mock(DrinkMaker.class);
         final CoffeeMachine coffeeMachine = new CoffeeMachine(drinkMaker);
-        final Order order = Order.of(drink, 1);
+        final Order order = Order.of(drink, new SugarNumber(1));
 
         coffeeMachine.make(order);
 
         verify(drinkMaker).process(command);
+    }
+
+    @Test
+    public void should_allow_to_order_two_sugar() {
+        final DrinkMaker drinkMaker = mock(DrinkMaker.class);
+        final CoffeeMachine coffeeMachine = new CoffeeMachine(drinkMaker);
+        final Order order = Order.of(Drink.CHOCOLATE, new SugarNumber(2));
+
+        coffeeMachine.make(order);
+
+        verify(drinkMaker).process("H:2:0");
     }
 }
