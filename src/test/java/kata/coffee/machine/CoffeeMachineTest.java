@@ -24,7 +24,7 @@ public class CoffeeMachineTest {
     @Test
     @Parameters({"TEA, T:1:0", "COFFEE, C:1:0", "CHOCOLATE, H:1:0", })
     public void should_send_message_to_drink_maker(Drink drink, String command) {
-        final Order order = Order.of(drink, new SugarNumber(1));
+        final Order order = Order.of(drink, new SugarNumber(1), new Amount(100));
 
         coffeeMachine.make(order);
 
@@ -33,7 +33,7 @@ public class CoffeeMachineTest {
 
     @Test
     public void should_allow_to_order_two_sugar() {
-        final Order order = Order.of(Drink.CHOCOLATE, new SugarNumber(2));
+        final Order order = Order.of(Drink.CHOCOLATE, new SugarNumber(2), new Amount(100));
 
         coffeeMachine.make(order);
 
@@ -42,7 +42,7 @@ public class CoffeeMachineTest {
 
     @Test
     public void should_not_ask_for_a_stick_when_no_sugar_asked() {
-        final Order order = Order.of(Drink.CHOCOLATE, new SugarNumber(0));
+        final Order order = Order.of(Drink.CHOCOLATE, new SugarNumber(0), new Amount(100));
 
         coffeeMachine.make(order);
 
