@@ -154,4 +154,19 @@ public class CoffeeMachineTest {
         verify(emailNotifier).notifyMissingDrink("water");
         verify(drinkMaker).process("M:Missing water, notification sent");
     }
+
+    @Test
+    public void should_send_an_email_when_there_is_a_shortage_in_milk() {
+        when(beverageQuantityChecker.isEmpty("milk")).thenReturn(true);
+        final Order order = OrderBuilder.newBuilder()
+                .withDrink(Drinks.TEA)
+                .withSugar(2)
+                .extraHot()
+                .build();
+
+        coffeeMachine.make(order);
+
+        verify(emailNotifier).notifyMissingDrink("milk");
+        verify(drinkMaker).process("M:Missing milk, notification sent");
+    }
 }

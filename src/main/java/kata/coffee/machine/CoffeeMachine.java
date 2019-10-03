@@ -19,6 +19,9 @@ public class CoffeeMachine {
         if (beverageQuantityChecker.isEmpty("water")) {
             emailNotifier.notifyMissingDrink("water");
             drinkMaker.process("M:Missing water, notification sent");
+        } else if (beverageQuantityChecker.isEmpty("milk")) {
+            emailNotifier.notifyMissingDrink("milk");
+            drinkMaker.process("M:Missing milk, notification sent");
         } else {
             drinkMaker.process(order.format());
             repository.track(order);
