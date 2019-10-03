@@ -14,6 +14,6 @@ public class Order {
     }
 
     public String format() {
-        return drink.format() + ":" + nbSugar.format() + ":0";
+        return drink.format() + ":" + nbSugar.format();
     }
 }

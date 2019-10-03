@@ -8,6 +8,9 @@ public class SugarNumber {
     }
 
     public String format() {
-        return String.valueOf(number);
+        if (number == 0) {
+            return ":";
+        }
+        return number + ":0";
     }
 }

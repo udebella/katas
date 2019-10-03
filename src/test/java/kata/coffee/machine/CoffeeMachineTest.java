@@ -39,4 +39,13 @@ public class CoffeeMachineTest {
 
         verify(drinkMaker).process("H:2:0");
     }
+
+    @Test
+    public void should_not_ask_for_a_stick_when_no_sugar_asked() {
+        final Order order = Order.of(Drink.CHOCOLATE, new SugarNumber(0));
+
+        coffeeMachine.make(order);
+
+        verify(drinkMaker).process("H::");
+    }
 }
