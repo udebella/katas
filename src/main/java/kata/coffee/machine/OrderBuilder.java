@@ -1,5 +1,10 @@
 package kata.coffee.machine;
 
+import kata.coffee.machine.drinks.Drink;
+import kata.coffee.machine.drinks.Drinks;
+import kata.coffee.machine.drinks.ExtraHot;
+import kata.coffee.machine.drinks.SugarDrink;
+
 public final class OrderBuilder {
     private int sugarNumber = 0;
     private boolean isExtraHot = false;

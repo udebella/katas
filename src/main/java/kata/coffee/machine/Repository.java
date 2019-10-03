@@ -1,5 +1,7 @@
 package kata.coffee.machine;
 
+import kata.coffee.machine.drinks.Drinks;
+
 import java.util.HashMap;
 import java.util.Map;
 

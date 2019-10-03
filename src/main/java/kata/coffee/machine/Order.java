@@ -1,5 +1,7 @@
 package kata.coffee.machine;
 
+import kata.coffee.machine.drinks.Drink;
+
 public class Order {
     private final Drink drink;
     private final Amount amount;
