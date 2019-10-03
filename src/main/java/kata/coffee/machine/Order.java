@@ -1,5 +1,7 @@
 package kata.coffee.machine;
 
+import java.util.Optional;
+
 public class Order {
     private final Drink drink;
     private final SugarNumber nbSugar;
@@ -16,6 +18,8 @@ public class Order {
     }
 
     public String format() {
-        return drink.format() + ":" + nbSugar.format();
+        return amount.isEnoughFor(drink)
+                .map(missingAmount -> "M:Missing " + missingAmount.format())
+                .orElse(drink.format() + ":" + nbSugar.format());
     }
 }
