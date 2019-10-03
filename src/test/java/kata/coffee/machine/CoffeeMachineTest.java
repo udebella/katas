@@ -110,6 +110,7 @@ public class CoffeeMachineTest {
                 .withDrink(Drinks.TEA)
                 .withSugar(2)
                 .extraHot()
+                .withAmount(100)
                 .build();
 
         coffeeMachine.make(order);
