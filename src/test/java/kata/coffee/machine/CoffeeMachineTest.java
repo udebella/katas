@@ -27,4 +27,15 @@ public class CoffeeMachineTest {
 
         verify(drinkMaker).process("C:1:0");
     }
+
+    @Test
+    public void should_send_message_to_drink_maker_for_a_chocolate_with_one_sugar() {
+        final DrinkMaker drinkMaker = mock(DrinkMaker.class);
+        final CoffeeMachine coffeeMachine = new CoffeeMachine(drinkMaker);
+        final Order order = Order.of(Drink.CHOCOLATE, 1);
+
+        coffeeMachine.make(order);
+
+        verify(drinkMaker).process("H:1:0");
+    }
 }
