@@ -25,6 +25,6 @@ public enum Drinks implements Drink {
 
     @Override
     public void register(Repository repository) {
-        repository.track(this);
+        repository.track(this, price);
     }
 }

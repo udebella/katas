@@ -20,6 +20,10 @@ public class Amount {
         return Optional.of(Amount.of(amount.value - value));
     }
 
+    public Amount add(Amount amount) {
+        return new Amount(value + amount.value);
+    }
+
     public static Amount of(int amount) {
         return new Amount(amount);
     }

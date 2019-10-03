@@ -115,6 +115,6 @@ public class CoffeeMachineTest {
         coffeeMachine.make(order);
         repository.printReporting(console);
 
-        verify(console).print("TEA 1");
+        verify(console).print("TEA: 40 cents");
     }
 }
