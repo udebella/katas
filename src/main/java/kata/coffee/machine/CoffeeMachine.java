@@ -8,6 +8,6 @@ public class CoffeeMachine {
     }
 
     public void make(Order order) {
-        drinkMaker.process("T:1:0");
+        drinkMaker.process(order.format());
     }
 }
