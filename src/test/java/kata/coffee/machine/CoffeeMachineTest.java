@@ -50,11 +50,12 @@ public class CoffeeMachineTest {
     }
 
     @Test
-    public void should_refuses_order_if_insufficient_amount() {
-        final Order order = Order.of(new SugarDrink(Drinks.CHOCOLATE, 0), Amount.of(0));
+    @Parameters({"TEA, 39", "COFFEE, 59", "CHOCOLATE, 49", "ORANGE_JUICE, 59", })
+    public void should_refuses_order_if_insufficient_amount(Drinks drink, int amount) {
+        final Order order = Order.of(new SugarDrink(drink, 0), Amount.of(amount));
 
         coffeeMachine.make(order);
 
-        verify(drinkMaker).process("M:Missing 50 cents");
+        verify(drinkMaker).process("M:Missing 1 cents");
     }
 }
