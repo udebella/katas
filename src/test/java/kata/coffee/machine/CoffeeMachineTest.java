@@ -3,6 +3,8 @@ package kata.coffee.machine;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
 import kata.coffee.machine.drinks.Drinks;
+import kata.coffee.machine.reporting.Console;
+import kata.coffee.machine.reporting.Repository;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

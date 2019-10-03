@@ -1,5 +1,7 @@
 package kata.coffee.machine;
 
+import kata.coffee.machine.reporting.Repository;
+
 public class CoffeeMachine {
     private final DrinkMaker drinkMaker;
     private final Repository repository;

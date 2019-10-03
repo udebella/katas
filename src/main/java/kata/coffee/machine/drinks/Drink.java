@@ -1,7 +1,7 @@
 package kata.coffee.machine.drinks;
 
 import kata.coffee.machine.Amount;
-import kata.coffee.machine.Repository;
+import kata.coffee.machine.reporting.Repository;
 
 import java.util.Optional;
 

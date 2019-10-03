@@ -1,5 +1,7 @@
-package kata.coffee.machine;
+package kata.coffee.machine.reporting;
 
+import kata.coffee.machine.Amount;
+import kata.coffee.machine.Order;
 import kata.coffee.machine.drinks.Drinks;
 
 import java.util.HashMap;
