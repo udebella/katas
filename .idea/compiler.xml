@@ -6,11 +6,12 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="rpn" />
         <module name="Tennis" />
+        <module name="rpn" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="1.8">
+      <module name="kata" target="1.8" />
       <module name="katas" target="1.8" />
       <module name="rpn" target="1.8" />
       <module name="Tennis" target="1.8" />
