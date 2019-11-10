@@ -10,6 +10,7 @@ public final class Room {
     }
 
     public static Room of(String type) {
+        Objects.requireNonNull(type, "Room type is mandatory");
         return new Room(type);
     }
 
