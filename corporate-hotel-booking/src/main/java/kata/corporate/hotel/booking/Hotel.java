@@ -22,4 +22,11 @@ public final class Hotel {
     public int hashCode() {
         return Objects.hash(roomList);
     }
+
+    @Override
+    public String toString() {
+        return "Hotel{" +
+                "roomList=" + roomList +
+                '}';
+    }
 }

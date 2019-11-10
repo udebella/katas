@@ -26,4 +26,11 @@ public final class Room {
     public int hashCode() {
         return Objects.hash(type);
     }
+
+    @Override
+    public String toString() {
+        return "Room{" +
+                "type='" + type + '\'' +
+                '}';
+    }
 }
