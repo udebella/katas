@@ -1,5 +1,6 @@
 package kata.corporate.hotel.booking;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
@@ -13,6 +14,10 @@ public final class Hotel {
     public static Hotel of(List<Room> roomList) {
         Objects.requireNonNull(roomList, "Room list is mandatory");
         return new Hotel(roomList);
+    }
+
+    public Hotel addRoom(String roomType) {
+        return of(Collections.singletonList(Room.of(roomType)));
     }
 
     @Override

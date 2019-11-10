@@ -4,6 +4,8 @@ import nl.jqno.equalsverifier.EqualsVerifier;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.util.Collections;
+
 class HotelTest {
     @Test
     void should_verify_equality() {
@@ -15,5 +17,14 @@ class HotelTest {
         Assertions.assertThatThrownBy(() -> Hotel.of(null))
                 .isInstanceOf(NullPointerException.class)
                 .hasMessage("Room list is mandatory");
+    }
+
+    @Test
+    void should_allow_to_add_new_rooms() {
+        final Hotel hotel = Hotel.of(Collections.emptyList());
+
+        final Hotel newHotel = hotel.addRoom("regular");
+
+        Assertions.assertThat(newHotel).isEqualTo(Hotel.of(Collections.singletonList(Room.of("regular"))));
     }
 }
