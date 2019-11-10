@@ -6,13 +6,13 @@ import java.util.Objects;
 public final class Hotel {
     private final List<Room> roomList;
 
-    public Hotel(List<Room> roomList) {
+    private Hotel(List<Room> roomList) {
         this.roomList = roomList;
     }
 
     public static Hotel of(List<Room> roomList) {
         Objects.requireNonNull(roomList, "Room list is mandatory");
-        return null;
+        return new Hotel(roomList);
     }
 
     @Override

@@ -19,7 +19,7 @@ public class HotelScenarioTest {
         final List<Room> roomList = IntStream.range(1, 4)
                 .mapToObj(number -> Room.of("regular"))
                 .collect(Collectors.toList());
-        final Hotel expected = new Hotel(roomList);
+        final Hotel expected = Hotel.of(roomList);
         Assertions.assertThat(testHotel).isEqualTo(expected);
     }
 }
