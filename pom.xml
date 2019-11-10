@@ -16,6 +16,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>tennis</module>
+        <module>corporate-hotel-booking</module>
     </modules>
 
 
