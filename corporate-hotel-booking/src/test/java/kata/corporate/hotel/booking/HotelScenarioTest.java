@@ -10,7 +10,8 @@ import java.util.stream.IntStream;
 public class HotelScenarioTest {
     @Test
     public void should_define_rooms_for_an_hotel() {
-        final HotelService hotelService = new HotelServiceImpl();
+        final HotelRepository repository = new InMemoryHotelRepository();
+        final HotelService hotelService = new HotelServiceImpl(repository);
 
         hotelService.setRoomType("testHotel", "regular", 4);
         final Hotel testHotel = hotelService.findHotelBy("testHotel");
