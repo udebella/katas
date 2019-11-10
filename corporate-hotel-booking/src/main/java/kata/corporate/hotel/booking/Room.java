@@ -5,7 +5,7 @@ import java.util.Objects;
 public final class Room {
     private final String type;
 
-    public Room(String type) {
+    private Room(String type) {
         this.type = type;
     }
 
