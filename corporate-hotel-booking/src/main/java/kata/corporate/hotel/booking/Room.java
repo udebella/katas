@@ -1,7 +1,28 @@
 package kata.corporate.hotel.booking;
 
-public class Room {
+import java.util.Objects;
+
+public final class Room {
+    private final String type;
+
+    public Room(String type) {
+        this.type = type;
+    }
+
     public static Room of(String type) {
-        return null;
+        return new Room(type);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Room room = (Room) o;
+        return Objects.equals(type, room.type);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(type);
     }
 }
