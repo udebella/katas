@@ -4,6 +4,7 @@ import nl.jqno.equalsverifier.EqualsVerifier;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
 import java.util.Collections;
 
 class HotelTest {
@@ -26,5 +27,14 @@ class HotelTest {
         final Hotel newHotel = hotel.addRoom("regular");
 
         Assertions.assertThat(newHotel).isEqualTo(Hotel.of(Collections.singletonList(Room.of("regular"))));
+    }
+
+    @Test
+    void should_keep_previous_rooms_when_adding_new_rooms_in_the_hotel() {
+        final Hotel hotel = Hotel.of(Collections.singletonList(Room.of("premium")));
+
+        final Hotel newHotel = hotel.addRoom("regular");
+
+        Assertions.assertThat(newHotel).isEqualTo(Hotel.of(Arrays.asList(Room.of("premium"), Room.of("regular"))));
     }
 }

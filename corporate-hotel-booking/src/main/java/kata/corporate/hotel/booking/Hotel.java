@@ -1,6 +1,6 @@
 package kata.corporate.hotel.booking;
 
-import java.util.Collections;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -17,7 +17,9 @@ public final class Hotel {
     }
 
     public Hotel addRoom(String roomType) {
-        return of(Collections.singletonList(Room.of(roomType)));
+        final ArrayList<Room> newRoomList = new ArrayList<>(roomList);
+        newRoomList.add(Room.of(roomType));
+        return of(newRoomList);
     }
 
     @Override
