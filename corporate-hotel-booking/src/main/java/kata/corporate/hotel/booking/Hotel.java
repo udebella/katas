@@ -10,6 +10,11 @@ public final class Hotel {
         this.roomList = roomList;
     }
 
+    public static Hotel of(List<Room> roomList) {
+        Objects.requireNonNull(roomList, "Room list is mandatory");
+        return null;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
