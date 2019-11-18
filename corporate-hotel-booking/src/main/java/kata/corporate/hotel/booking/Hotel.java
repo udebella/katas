@@ -14,11 +14,6 @@ public final class Hotel {
         this.roomList = roomList;
     }
 
-    @Deprecated
-    public static Hotel of(Collection<Room> roomList) {
-        return of("hotelId", roomList);
-    }
-
     public static Hotel of(String hotelId, Collection<Room> rooms) {
         Objects.requireNonNull(rooms, "Room list is mandatory");
         return new Hotel(hotelId, rooms);
