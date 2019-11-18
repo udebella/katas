@@ -20,6 +20,6 @@ public class HotelServiceImpl implements HotelService {
 
     @Override
     public Hotel findHotelBy(String hotelId) {
-        return null;
+        return Hotel.of(hotelId, Collections.emptyList());
     }
 }

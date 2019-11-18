@@ -1,5 +1,6 @@
 package kata.corporate.hotel.booking;
 
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
@@ -29,5 +30,16 @@ class HotelServiceImplTest {
         hotelService.setRoomType("hotelId", "regular", 1);
 
         verify(repository).save(Hotel.of("hotelId", Arrays.asList(Room.of("premium"), Room.of("regular"))));
+    }
+
+    @Test
+    void should_return_an_empty_hotel_when_not_found_in_the_repository() {
+        final HotelRepository repository = mock(HotelRepository.class);
+        doReturn(Optional.empty()).when(repository).find("hotelId");
+        final HotelServiceImpl hotelService = new HotelServiceImpl(repository);
+
+        final Hotel hotelFound = hotelService.findHotelBy("hotelId");
+
+        Assertions.assertThat(hotelFound).isEqualTo(Hotel.of("hotelId", Collections.emptyList()));
     }
 }
