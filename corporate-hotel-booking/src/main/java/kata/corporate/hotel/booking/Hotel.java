@@ -24,6 +24,7 @@ public final class Hotel {
     }
 
     public static Hotel of(String hotelId, Collection<Room> rooms) {
+        Objects.requireNonNull(rooms, "Room list is mandatory");
         return new Hotel(hotelId, rooms);
     }
 

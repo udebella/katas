@@ -15,7 +15,7 @@ class HotelTest {
 
     @Test
     void should_forbid_null_room_list() {
-        Assertions.assertThatThrownBy(() -> Hotel.of(null))
+        Assertions.assertThatThrownBy(() -> Hotel.of("hotelId", null))
                 .isInstanceOf(NullPointerException.class)
                 .hasMessage("Room list is mandatory");
     }
