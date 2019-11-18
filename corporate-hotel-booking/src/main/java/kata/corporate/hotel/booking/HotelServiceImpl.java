@@ -11,7 +11,7 @@ public class HotelServiceImpl implements HotelService {
 
     @Override
     public void setRoomType(String hotelId, String roomType, int quantity) {
-        Hotel hotel = repository.find(hotelId).orElse(Hotel.of(hotelId, Collections.emptyList()));
+        Hotel hotel = findHotelBy(hotelId);
         for (int i = 0; i < quantity; i++) {
             hotel = hotel.addRoom(Room.of(roomType));
         }
