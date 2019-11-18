@@ -6,9 +6,15 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public final class Hotel {
+    private final String hotelId;
     private final Collection<Room> roomList;
 
     private Hotel(Collection<Room> roomList) {
+        this("example", roomList);
+    }
+
+    public Hotel(String hotelId, Collection<Room> roomList) {
+        this.hotelId = hotelId;
         this.roomList = roomList;
     }
 
@@ -18,7 +24,7 @@ public final class Hotel {
     }
 
     public static Hotel of(String hotelId, Collection<Room> rooms) {
-        return of(rooms);
+        return new Hotel(hotelId, rooms);
     }
 
     public Hotel addRoom(Room addedRoom) {
@@ -28,7 +34,7 @@ public final class Hotel {
     }
 
     public boolean matches(String hotelId) {
-        return true;
+        return this.hotelId.equals(hotelId);
     }
 
     @Override
@@ -36,18 +42,20 @@ public final class Hotel {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Hotel hotel = (Hotel) o;
-        return Objects.equals(roomList, hotel.roomList);
+        return Objects.equals(hotelId, hotel.hotelId) &&
+                Objects.equals(roomList, hotel.roomList);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(roomList);
+        return Objects.hash(hotelId, roomList);
     }
 
     @Override
     public String toString() {
         return "Hotel{" +
-                "roomList=" + roomList +
+                "hotelId='" + hotelId + '\'' +
+                ", roomList=" + roomList +
                 '}';
     }
 }

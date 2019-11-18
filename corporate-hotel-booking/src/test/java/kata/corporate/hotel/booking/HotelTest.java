@@ -44,4 +44,11 @@ class HotelTest {
 
         Assertions.assertThat(hotel.matches("hotelId")).isTrue();
     }
+
+    @Test
+    void should_not_match_when_given_a_different_hotel_id() {
+        final Hotel hotel = Hotel.of("hotelId", Collections.emptyList());
+
+        Assertions.assertThat(hotel.matches("differentHotelId")).isFalse();
+    }
 }
