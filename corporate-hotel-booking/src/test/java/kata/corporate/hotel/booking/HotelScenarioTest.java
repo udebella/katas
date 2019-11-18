@@ -16,7 +16,7 @@ public class HotelScenarioTest {
         hotelService.setRoomType("testHotel", "regular", 4);
         final Hotel testHotel = hotelService.findHotelBy("testHotel");
 
-        final List<Room> roomList = IntStream.range(1, 4)
+        final List<Room> roomList = IntStream.rangeClosed(1, 4)
                 .mapToObj(number -> Room.of("regular"))
                 .collect(Collectors.toList());
         final Hotel expected = Hotel.of("testHotel", roomList);
