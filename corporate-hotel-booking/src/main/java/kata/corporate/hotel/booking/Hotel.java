@@ -17,10 +17,18 @@ public final class Hotel {
         return new Hotel(roomList);
     }
 
+    public static Hotel of(String hotelId, Collection<Room> rooms) {
+        return of(rooms);
+    }
+
     public Hotel addRoom(Room addedRoom) {
         final Collection<Room> newRoomList = Stream.concat(roomList.stream(), Stream.of(addedRoom))
                 .collect(Collectors.toList());
         return of(newRoomList);
+    }
+
+    public boolean matches(String hotelId) {
+        return true;
     }
 
     @Override

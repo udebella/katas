@@ -37,4 +37,11 @@ class HotelTest {
 
         Assertions.assertThat(newHotel).isEqualTo(Hotel.of(Arrays.asList(Room.of("premium"), Room.of("regular"))));
     }
+
+    @Test
+    void should_match_given_the_hotel_id() {
+        final Hotel hotel = Hotel.of("hotelId", Collections.emptyList());
+
+        Assertions.assertThat(hotel.matches("hotelId")).isTrue();
+    }
 }
