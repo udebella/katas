@@ -1,5 +1,7 @@
 package kata.corporate.hotel.booking;
 
+import java.util.Collections;
+
 public class HotelServiceImpl implements HotelService {
     private final HotelRepository repository;
 
@@ -9,7 +11,7 @@ public class HotelServiceImpl implements HotelService {
 
     @Override
     public void setRoomType(String hotelId, String roomType, int quantity) {
-        Hotel hotel = repository.find(hotelId);
+        Hotel hotel = repository.find(hotelId).orElse(Hotel.of(Collections.emptyList()));
         for (int i = 0; i < quantity; i++) {
             hotel = hotel.addRoom(Room.of(roomType));
         }
