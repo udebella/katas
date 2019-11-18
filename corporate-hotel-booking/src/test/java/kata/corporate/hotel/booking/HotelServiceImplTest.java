@@ -42,4 +42,16 @@ class HotelServiceImplTest {
 
         Assertions.assertThat(hotelFound).isEqualTo(Hotel.of("hotelId", Collections.emptyList()));
     }
+
+    @Test
+    void should_return_matching_hotel_when_found_in_the_repository() {
+        final HotelRepository repository = mock(HotelRepository.class);
+        final Hotel savedHotel = Hotel.of("hotelId", Collections.singletonList(Room.of("premium")));
+        doReturn(Optional.of(savedHotel)).when(repository).find("hotelId");
+        final HotelServiceImpl hotelService = new HotelServiceImpl(repository);
+
+        final Hotel hotelFound = hotelService.findHotelBy("hotelId");
+
+        Assertions.assertThat(hotelFound).isEqualTo(savedHotel);
+    }
 }
