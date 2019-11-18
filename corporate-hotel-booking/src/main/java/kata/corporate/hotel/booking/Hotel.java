@@ -14,7 +14,7 @@ public final class Hotel {
         this("example", roomList);
     }
 
-    public Hotel(String hotelId, Collection<Room> roomList) {
+    private Hotel(String hotelId, Collection<Room> roomList) {
         this.hotelId = hotelId;
         this.roomList = roomList;
     }
