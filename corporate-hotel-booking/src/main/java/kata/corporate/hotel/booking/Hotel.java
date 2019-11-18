@@ -9,11 +9,6 @@ public final class Hotel {
     private final String hotelId;
     private final Collection<Room> roomList;
 
-    @Deprecated
-    private Hotel(Collection<Room> roomList) {
-        this("example", roomList);
-    }
-
     private Hotel(String hotelId, Collection<Room> roomList) {
         this.hotelId = hotelId;
         this.roomList = roomList;
@@ -21,8 +16,7 @@ public final class Hotel {
 
     @Deprecated
     public static Hotel of(Collection<Room> roomList) {
-        Objects.requireNonNull(roomList, "Room list is mandatory");
-        return new Hotel(roomList);
+        return of("hotelId", roomList);
     }
 
     public static Hotel of(String hotelId, Collection<Room> rooms) {
@@ -33,7 +27,7 @@ public final class Hotel {
     public Hotel addRoom(Room addedRoom) {
         final Collection<Room> newRoomList = Stream.concat(roomList.stream(), Stream.of(addedRoom))
                 .collect(Collectors.toList());
-        return of(newRoomList);
+        return new Hotel(this.hotelId, newRoomList);
     }
 
     public boolean matches(String hotelId) {
