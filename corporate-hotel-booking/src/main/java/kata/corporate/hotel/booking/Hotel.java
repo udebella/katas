@@ -9,6 +9,7 @@ public final class Hotel {
     private final String hotelId;
     private final Collection<Room> roomList;
 
+    @Deprecated
     private Hotel(Collection<Room> roomList) {
         this("example", roomList);
     }
@@ -18,6 +19,7 @@ public final class Hotel {
         this.roomList = roomList;
     }
 
+    @Deprecated
     public static Hotel of(Collection<Room> roomList) {
         Objects.requireNonNull(roomList, "Room list is mandatory");
         return new Hotel(roomList);
