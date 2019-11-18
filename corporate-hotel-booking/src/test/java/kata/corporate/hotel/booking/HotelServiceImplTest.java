@@ -17,17 +17,17 @@ class HotelServiceImplTest {
 
         hotelService.setRoomType("hotelId", "regular", 1);
 
-        verify(repository).save(Hotel.of(Collections.singletonList(Room.of("regular"))));
+        verify(repository).save(Hotel.of("hotelId", Collections.singletonList(Room.of("regular"))));
     }
 
     @Test
     void should_update_existing_hotel() {
         final HotelRepository repository = mock(HotelRepository.class);
-        doReturn(Optional.of(Hotel.of(Collections.singletonList(Room.of("premium"))))).when(repository).find("hotelId");
+        doReturn(Optional.of(Hotel.of("hotelId", Collections.singletonList(Room.of("premium"))))).when(repository).find("hotelId");
         final HotelServiceImpl hotelService = new HotelServiceImpl(repository);
 
         hotelService.setRoomType("hotelId", "regular", 1);
 
-        verify(repository).save(Hotel.of(Arrays.asList(Room.of("premium"), Room.of("regular"))));
+        verify(repository).save(Hotel.of("hotelId", Arrays.asList(Room.of("premium"), Room.of("regular"))));
     }
 }
