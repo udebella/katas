@@ -11,7 +11,7 @@ public class HotelServiceImpl implements HotelService {
     public void setRoomType(String hotelId, String roomType, int quantity) {
         Hotel hotel = repository.find(hotelId);
         for (int i = 0; i < quantity; i++) {
-            hotel = hotel.addRoom(roomType);
+            hotel = hotel.addRoom(Room.of(roomType));
         }
         repository.save(hotel);
     }

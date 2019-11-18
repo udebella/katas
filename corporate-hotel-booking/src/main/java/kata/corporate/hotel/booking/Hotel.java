@@ -17,8 +17,7 @@ public final class Hotel {
         return new Hotel(roomList);
     }
 
-    public Hotel addRoom(String roomType) {
-        final Room addedRoom = Room.of(roomType);
+    public Hotel addRoom(Room addedRoom) {
         final Collection<Room> newRoomList = Stream.concat(roomList.stream(), Stream.of(addedRoom))
                 .collect(Collectors.toList());
         return of(newRoomList);

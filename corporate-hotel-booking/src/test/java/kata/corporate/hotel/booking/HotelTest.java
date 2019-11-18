@@ -24,7 +24,7 @@ class HotelTest {
     void should_allow_to_add_new_rooms() {
         final Hotel hotel = Hotel.of(Collections.emptyList());
 
-        final Hotel newHotel = hotel.addRoom("regular");
+        final Hotel newHotel = hotel.addRoom(Room.of("regular"));
 
         Assertions.assertThat(newHotel).isEqualTo(Hotel.of(Collections.singletonList(Room.of("regular"))));
     }
@@ -33,7 +33,7 @@ class HotelTest {
     void should_keep_previous_rooms_when_adding_new_rooms_in_the_hotel() {
         final Hotel hotel = Hotel.of(Collections.singletonList(Room.of("premium")));
 
-        final Hotel newHotel = hotel.addRoom("regular");
+        final Hotel newHotel = hotel.addRoom(Room.of("regular"));
 
         Assertions.assertThat(newHotel).isEqualTo(Hotel.of(Arrays.asList(Room.of("premium"), Room.of("regular"))));
     }
