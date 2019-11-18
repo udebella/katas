@@ -16,10 +16,13 @@ public class HotelScenarioTest {
         hotelService.setRoomType("testHotel", "regular", 4);
         final Hotel testHotel = hotelService.findHotelBy("testHotel");
 
-        final List<Room> roomList = IntStream.rangeClosed(1, 4)
-                .mapToObj(number -> Room.of("regular"))
-                .collect(Collectors.toList());
-        final Hotel expected = Hotel.of("testHotel", roomList);
+        final Hotel expected = Hotel.of("testHotel", generateRooms("regular", 4));
         Assertions.assertThat(testHotel).isEqualTo(expected);
+    }
+
+    private List<Room> generateRooms(String roomType, int quantity) {
+        return IntStream.rangeClosed(1, quantity)
+                .mapToObj(number -> Room.of(roomType))
+                .collect(Collectors.toList());
     }
 }
