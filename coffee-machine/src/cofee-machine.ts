@@ -74,7 +74,7 @@ export const addExtraHot = (drink: Tea | Coffee | Chocolate) => {
   };
 };
 
-export const addSugar = (n: number, drink: Tea | Coffee | Chocolate) => {
+export const addSugar = (n: number) => (drink: Tea | Coffee | Chocolate) => {
   return {
     ...drink,
     sugars: n,
