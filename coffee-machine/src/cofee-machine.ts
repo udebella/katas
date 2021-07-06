@@ -82,10 +82,7 @@ export const addSugar = (n: number) => (drink: Tea | Coffee | Chocolate) => {
   };
 };
 
-export const pay = (
-  amount: number,
-  drink: Tea | Coffee | Chocolate | OrangeJuice,
-): Command | Message => {
+export const pay = (amount: number) => (drink: Tea | Coffee | Chocolate | OrangeJuice): Command | Message => {
   if (amount < drink.price) {
     return {
       code: "M",
