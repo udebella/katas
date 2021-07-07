@@ -48,14 +48,13 @@ export interface CoffeeMachine {
   reports: Report;
 }
 
-type Drinks = "Tea" | "Coffee" | "Chocolate" | "OrangeJuice";
+type DrinksTypes = "Tea" | "Coffee" | "Chocolate" | "OrangeJuice";
+type Drinks = Tea | Coffee | Chocolate | OrangeJuice;
 export function requestDrink(name: "OrangeJuice"): OrangeJuice;
 export function requestDrink(name: "Chocolate"): Chocolate;
 export function requestDrink(name: "Coffee"): Coffee;
 export function requestDrink(name: "Tea"): Tea;
-export function requestDrink(
-  name: Drinks,
-): Tea | Coffee | Chocolate | OrangeJuice {
+export function requestDrink(name: DrinksTypes): Drinks {
   switch (name) {
     case "Tea":
       return { code: "T", price: 40 };
@@ -85,7 +84,7 @@ export const addSugar = (n: number) =>
   };
 
 export const pay = (amount: number) =>
-  (drink: Tea | Coffee | Chocolate | OrangeJuice): Command | Message => {
+  (drink: Drinks): Command | Message => {
     if (amount < drink.price) {
       return {
         code: "M",
@@ -140,6 +139,6 @@ export function createCommand<T1, T2, T3, T4>(
   h: (x: T3) => T4,
 ): T4;
 // deno-lint-ignore no-explicit-any
-export function createCommand(value: Drinks, ...functions: any[]) {
+export function createCommand(value: DrinksTypes, ...functions: any[]) {
   return functions.reduceRight((val, fn) => fn(val), value);
 }
