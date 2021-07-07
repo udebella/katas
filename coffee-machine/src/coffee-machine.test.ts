@@ -19,9 +19,9 @@ describe("coffee machine", () => {
 
   it("sends the right command for tea", () => {
     const tea = createCommand(
-      pay(50),
-      addSugar(1),
       requestDrink("Tea"),
+      addSugar(1),
+      pay(50),
     );
 
     machine.handle(tea);
@@ -31,8 +31,8 @@ describe("coffee machine", () => {
 
   it("sends the right command for chocolate", () => {
     const chocolate = createCommand(
-      pay(50),
       requestDrink("Chocolate"),
+      pay(50),
     );
 
     machine.handle(chocolate);
@@ -42,9 +42,9 @@ describe("coffee machine", () => {
 
   it("sends the right command for coffee", () => {
     const coffee = createCommand(
-      pay(60),
-      addSugar(2),
       requestDrink("Coffee"),
+      addSugar(2),
+      pay(60),
     );
 
     machine.handle(coffee);
@@ -54,9 +54,9 @@ describe("coffee machine", () => {
 
   it("displays missing amount", () => {
     const coffee = createCommand(
-      pay(50),
-      addSugar(2),
       requestDrink("Coffee"),
+      addSugar(2),
+      pay(50),
     );
 
     machine.handle(coffee);
@@ -66,8 +66,8 @@ describe("coffee machine", () => {
 
   it("sends the right command for orange juice", () => {
     const orangeJuice = createCommand(
-      pay(60),
       requestDrink("OrangeJuice"),
+      pay(60),
     );
 
     machine.handle(orangeJuice);
@@ -77,9 +77,9 @@ describe("coffee machine", () => {
 
   it("sends the right command for extra hot coffee", () => {
     const extraHotcoffee = createCommand(
-      pay(60),
-      addExtraHot,
       requestDrink("Coffee"),
+      addExtraHot,
+      pay(60),
     );
 
     machine.handle(extraHotcoffee);
@@ -89,10 +89,10 @@ describe("coffee machine", () => {
 
   it("sends the right command for extra hot chocolate", () => {
     const extraHotchocolate = createCommand(
-      pay(50),
-      addSugar(1),
-      addExtraHot,
       requestDrink("Chocolate"),
+      addExtraHot,
+      addSugar(1),
+      pay(50),
     );
 
     machine.handle(extraHotchocolate);
@@ -102,10 +102,10 @@ describe("coffee machine", () => {
 
   it("sends the right command for extra hot tea", () => {
     const extraHotTea = createCommand(
-      pay(50),
-      addExtraHot,
-      addSugar(2),
       requestDrink("Tea"),
+      addSugar(2),
+      addExtraHot,
+      pay(50),
     );
 
     machine.handle(extraHotTea);
@@ -115,10 +115,10 @@ describe("coffee machine", () => {
 
   it("displays report about earned money", () => {
     const extraHotTea = createCommand(
-      pay(50),
-      addExtraHot,
-      addSugar(2),
       requestDrink("Tea"),
+      addSugar(2),
+      addExtraHot,
+      pay(50),
     );
 
     machine.handle(extraHotTea);

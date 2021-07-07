@@ -48,12 +48,13 @@ export interface CoffeeMachine {
   reports: Report;
 }
 
+type Drinks = "Tea" | "Coffee" | "Chocolate" | "OrangeJuice";
 export function requestDrink(name: "OrangeJuice"): OrangeJuice;
 export function requestDrink(name: "Chocolate"): Chocolate;
 export function requestDrink(name: "Coffee"): Coffee;
 export function requestDrink(name: "Tea"): Tea;
 export function requestDrink(
-  name: "Tea" | "Coffee" | "Chocolate" | "OrangeJuice",
+  name: Drinks,
 ): Tea | Coffee | Chocolate | OrangeJuice {
   switch (name) {
     case "Tea":
@@ -124,22 +125,21 @@ export const coffeeMachine = (drinkMaker: DrinkMaker): CoffeeMachine => {
 };
 
 export function createCommand<T1, T2>(
-  f: (x: T1) => T2,
   val: T1,
+  f: (x: T1) => T2,
 ): T2;
 export function createCommand<T1, T2, T3>(
-  g: (x: T2) => T3,
-  f: (x: T1) => T2,
   val: T1,
+  f: (x: T1) => T2,
+  g: (x: T2) => T3,
 ): T3;
 export function createCommand<T1, T2, T3, T4>(
-  h: (x: T3) => T4,
-  g: (x: T2) => T3,
-  f: (x: T1) => T2,
   val: T1,
+  f: (x: T1) => T2,
+  g: (x: T2) => T3,
+  h: (x: T3) => T4,
 ): T4;
 // deno-lint-ignore no-explicit-any
-export function createCommand(...args: any[]) {
-  const val = args.pop();
-  return args.reduceRight((val, fn) => fn(val), val);
+export function createCommand(value: Drinks, ...functions: any[]) {
+  return functions.reduceRight((val, fn) => fn(val), value);
 }
