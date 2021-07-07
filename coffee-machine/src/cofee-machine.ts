@@ -74,26 +74,28 @@ export const addExtraHot = (drink: Tea | Coffee | Chocolate) => {
   };
 };
 
-export const addSugar = (n: number) => (drink: Tea | Coffee | Chocolate) => {
-  return {
-    ...drink,
-    sugars: n,
-    stick: n > 0 ? "0" : undefined,
-  };
-};
-
-export const pay = (amount: number) => (drink: Tea | Coffee | Chocolate | OrangeJuice): Command | Message => {
-  if (amount < drink.price) {
+export const addSugar = (n: number) =>
+  (drink: Tea | Coffee | Chocolate) => {
     return {
-      code: "M",
-      content: `Missing ${drink.price - amount} cents`,
+      ...drink,
+      sugars: n,
+      stick: n > 0 ? "0" : undefined,
     };
-  }
-  return {
-    ...drink,
-    payed: true,
   };
-};
+
+export const pay = (amount: number) =>
+  (drink: Tea | Coffee | Chocolate | OrangeJuice): Command | Message => {
+    if (amount < drink.price) {
+      return {
+        code: "M",
+        content: `Missing ${drink.price - amount} cents`,
+      };
+    }
+    return {
+      ...drink,
+      payed: true,
+    };
+  };
 
 const isMessage = (command: Command | Message): command is Message =>
   command.code === "M";
@@ -120,3 +122,24 @@ export const coffeeMachine = (drinkMaker: DrinkMaker): CoffeeMachine => {
     },
   };
 };
+
+export function createCommand<T1, T2>(
+  f: (x: T1) => T2,
+  val: T1,
+): T2;
+export function createCommand<T1, T2, T3>(
+  g: (x: T2) => T3,
+  f: (x: T1) => T2,
+  val: T1,
+): T3;
+export function createCommand<T1, T2, T3, T4>(
+  h: (x: T3) => T4,
+  g: (x: T2) => T3,
+  f: (x: T1) => T2,
+  val: T1,
+): T4;
+// deno-lint-ignore no-explicit-any
+export function createCommand(...args: any[]) {
+  const val = args.pop();
+  return args.reduceRight((val, fn) => fn(val), val);
+}
